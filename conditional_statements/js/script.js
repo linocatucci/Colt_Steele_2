@@ -15,6 +15,7 @@ if (age < 0) {
 }
 */
 
+// WHILE LOOPS
 /*
 // create secret number
 // ask user for guess
@@ -38,6 +39,7 @@ while (!guessed) {
 }
 */
 
+/*
 console.log('PRINT ALL NUMBERS BETWEEN -10 AND 19');
 var number = -10;
 
@@ -69,3 +71,23 @@ while (number3 >= 5 && number3 <= 50) {
     }
     number3 += 1;
 }
+
+*/
+// version 1
+// var answer = prompt('Are we there yet!?!?');
+// while (answer !== "yes" && answer !== "yeah") {
+//     var answer = prompt('Are we there yet!?!?');
+// }
+// alert('Yay, we finally made it!')
+
+// Bonus 
+// version 2
+// var answer = prompt('Are we there yet!?!?');
+// while (answer.indexOf('yes') === -1 && answer.indexOf('yeah') === -1) {
+//     var answer = prompt('Are we there yet!?!?');
+// }
+// alert('Yay, we finally made it!')
+
+// FOR LOOPS
+
+confirm
