@@ -8,6 +8,7 @@ console.log('Chapter Arrays!, group data in a list!');
 // // shift = delete!
 // // indexOf
 // // slice
+// // splice
 // var nums = [34, 23, 33, 12];
 
 // // 2 dimension Arrays:
@@ -49,18 +50,33 @@ var toDoList = [];
 while (question !== "quit") {
     var question = prompt("what would you like to do?");
     if (question === 'new') {
-        toDoList.push(prompt('add a new todo'));
+        addTodos();
     } else if (question === 'list') {
-        toDoList.forEach(function (toDoList, index) {
-            console.log('************')
-            console.log(index + ': ' + toDoList)
-            console.log('************')
-        })
+        listTodos();
     } else if (question === 'delete') {
-
-
+        deleteTodos();
     } else {
         question = 'quit';
         console.log('OK, you quite the app');
     }
+}
+
+function addTodos() {
+    var addNewItem = toDoList.push(prompt('add a new todo'));
+    console.log(addNewItem + ' ' + ' added to the list');
+}
+
+function listTodos() {
+    toDoList.forEach(function (toDoList, index) {
+        console.log('************')
+        console.log(index + ': ' + toDoList)
+    })
+    console.log('************')
+}
+
+function deleteTodos() {
+    var index = prompt('index of todo to delete')
+    // ask for index of todo to be deleted
+    // delete that todo
+    toDoList.splice(index, 1);
 }
