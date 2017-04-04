@@ -1316,7 +1316,7 @@ if (typeof jQuery === 'undefined') {
 
     var triggers = this.options.trigger.split(' ')
 
-    for (var i = triggers.length; i--;) {
+    for (var i = triggers.length; ;) {
       var trigger = triggers[i]
 
       if (trigger == 'click') {

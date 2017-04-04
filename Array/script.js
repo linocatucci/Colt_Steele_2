@@ -45,38 +45,99 @@ console.log('Chapter Arrays!, group data in a list!');
 // delete - delete an item
 // quit - quit app
 // var toDoList = [];
-var toDoList = [];
+// var toDoList = [];
 
-while (question !== "quit") {
-    var question = prompt("what would you like to do?");
-    if (question === 'new') {
-        addTodos();
-    } else if (question === 'list') {
-        listTodos();
-    } else if (question === 'delete') {
-        deleteTodos();
-    } else {
-        question = 'quit';
-        console.log('OK, you quite the app');
+// while (question !== "quit") {
+//     var question = prompt("what would you like to do?");
+//     if (question === 'new') {
+//         addTodos();
+//     } else if (question === 'list') {
+//         listTodos();
+//     } else if (question === 'delete') {
+//         deleteTodos();
+//     } else {
+//         question = 'quit';
+//         console.log('OK, you quit the app');
+//     }
+// }
+
+// function addTodos() {
+//     var addNewItem = toDoList.push(prompt('add a new todo'));
+//     console.log(addNewItem + ' ' + ' added to the list');
+// }
+
+// function listTodos() {
+//     toDoList.forEach(function (toDoList, index) {
+//         console.log('************')
+//         console.log(index + ': ' + toDoList)
+//     })
+//     console.log('************')
+// }
+
+// function deleteTodos() {
+//     var index = prompt('index of todo to delete')
+//     // ask for index of todo to be deleted
+//     // delete that todo
+//     toDoList.splice(index, 1);
+// }
+
+// Array Problem set
+
+// 1. printReverse()
+// printReverse([1,2,3,4,5])
+// 5, 4, 3, 2, ,1
+
+// function printReverse(array) {
+//     var index = array.length;
+//     console.log(index)
+//     array.forEach(function (element, index) {
+//         console.log(element);
+//         console.log(index + ' ' + element);
+//         index--
+//     })
+// }
+
+function printReverse(array) {
+    for (var i = array.length - 1; i >= 0; i--) {
+        console.log(array[i]);
     }
 }
+printReverse([1, 2, 3, 4, 5]);
 
-function addTodos() {
-    var addNewItem = toDoList.push(prompt('add a new todo'));
-    console.log(addNewItem + ' ' + ' added to the list');
+printReverse(['a', 'b', 'c', 'd']);
+
+// isUniform()
+//[1,1,1,1,1] =  true
+// [2,1,1,1] = false
+// 
+// write a function isUniform which takes an array as argument and returns true
+// if all elements in the array are identical
+// variable in the loop with value of 1st element in the array and compare it with this element.
+//
+
+function isUniform(arr) {
+    var first = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        if (first !== arr[i]) {
+            return false;
+        }
+    }
+    return true;
 }
 
-function listTodos() {
-    toDoList.forEach(function (toDoList, index) {
-        console.log('************')
-        console.log(index + ': ' + toDoList)
+var eersteCheck = isUniform([1, 1, 1, 1, 1, 1, 1]);
+console.log(eersteCheck);
+
+// sumArray, tel alle getallen op van de array/
+
+function sumArray(arr) {
+    var totaal = 0;
+    arr.forEach(function (element) {
+        totaal += element;
     })
-    console.log('************')
+    console.log(totaal);
 }
 
-function deleteTodos() {
-    var index = prompt('index of todo to delete')
-    // ask for index of todo to be deleted
-    // delete that todo
-    toDoList.splice(index, 1);
-}
+sumArray([1, 2, 3]);
+
+sumArray([5, 7, 2, 9, 3])
