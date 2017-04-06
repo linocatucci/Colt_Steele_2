@@ -22,7 +22,13 @@ var movieDB = [{
         title: "the Accountant",
         rating: 5,
         hasWatched: false
-    }
+    },
+    {
+        title: "The Godfather",
+        rating: 5,
+        hasWatched: true
+    },
+    {}
 ]
 
 // forEach loop:
