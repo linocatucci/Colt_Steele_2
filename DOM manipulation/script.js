@@ -1,3 +1,8 @@
-var h1 = document.querySelector('h1');
-
-h1.style.color = 'pink';
+//DOM selectors:
+/*
+document.getElementById()
+document.getElementsByClassName()
+document.getElementsByTagName()
+document.querySelector()
+document.querySelectorAll()
+*/
