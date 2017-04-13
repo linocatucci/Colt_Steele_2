@@ -29,6 +29,7 @@ var colors = [
 var squares = document.querySelectorAll('.square');
 // hard code a picked color from the array
 var pickedColor = pickedColor();
+
 // add the picked color to the display
 // give the ColorDisplay color the same color as the pickedColor
 var ColorDisplay = document.querySelector('#displayColor');
@@ -65,6 +66,10 @@ function setWinningColor(color) {
         squares[i].style.background = color;
 }
 
-function pickColor(){
-
+function pickedColor() {
+    // create a random nr between 0-5
+    // pick the nr corresponding in the colors array
+    var randomNR = Math.floor(Math.random() * colors.length);
+    console.log(colors[randomNR]);
+    return colors[randomNR]
 }

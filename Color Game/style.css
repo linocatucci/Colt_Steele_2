@@ -1,27 +1,32 @@
 body {
-    background-color: #232323;
+  background-color: #232323;
 }
 
 #messageDisplay {
-    color: #fff;
-    text-align: center;
-    font-size: 18px;
+  color: #fff;
+  font-size: 24px;
 }
 
 #container {
   margin: 0 auto;
   max-width: 600px;
 }
+
 .square {
   width: 30%;
   background: purple;
   margin: 1.66%;
   border-radius: 25%;
-  float:left;
+  float: left;
   padding-bottom: 30%;
 }
 
 h1 {
   text-align: center;
   color: #fff;
+}
+
+.messageDisp {
+  text-align: center;
+  margin-bottom: 30px;
 }
