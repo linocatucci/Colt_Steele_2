@@ -130,7 +130,7 @@ function randomColor() {
     var randomRed = Math.floor(Math.random() * 256);
     // pick a green from 0 - 255
     var randomGreen = Math.floor(Math.random() * 256);
-    //     // pick a blue from 0 - 255
+    // pick a blue from 0 - 255
     var randomBlue = Math.floor(Math.random() * 256);
 
     var randomColorCode = 'rgb(' + randomRed + ', ' + randomGreen + ', ' + randomBlue + ')';
