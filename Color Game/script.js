@@ -45,8 +45,37 @@ var messageDisplay = document.querySelector('#messageDisplay');
 var h1 = document.querySelector('.h1-class');
 
 var newGame = document.querySelector('.btn_newGame');
+var easyBtn = document.querySelector('#easybtn');
+var hardBtn = document.querySelector('#hardbtn');
 
-// add initial colors to squares
+easyBtn.addEventListener('click', function () {
+    easyBtn.classList.toggle('selected');
+    hardBtn.classList.toggle('selected');
+})
+
+hardBtn.addEventListener('click', function () {
+
+    hardBtn.classList.toggle('selected');
+    easyBtn.classList.toggle('selected');
+})
+
+newGame.addEventListener('click', function () {
+    // generate all new colors
+    newGame.textContent = 'New Color?'
+    colors = generateRandomColors(6);
+
+    // pick a new random color from the array
+    pickedColor = pickedColorF();
+    // change the display color in new picked color
+    ColorDisplay.textContent = pickedColor;
+    // change the colors of squares / add initial colors to squares
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].style.background = colors[i];
+    }
+    h1.style.background = "#232323";
+    messageDisplay.textContent = '';
+})
+
 for (var i = 0; i < squares.length; i++) {
     squares[i].style.background = colors[i];
 
@@ -61,6 +90,7 @@ for (var i = 0; i < squares.length; i++) {
             messageDisplay.textContent = 'You Won!'
             h1.style.background = clickedColor;
             setWinningColor(clickedColor);
+            newGame.textContent = 'Play Again?'
         } else {
             this.style.background = '#232323';
             messageDisplay.textContent = 'Try again';

@@ -34,3 +34,7 @@ body {
   text-align: center;
   margin: 10px 0px;
 }
+
+.selected {
+  background: rgb(42.2%, 51.9%, 94.8%)
+}
