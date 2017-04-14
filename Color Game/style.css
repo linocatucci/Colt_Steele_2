@@ -1,10 +1,11 @@
 body {
   background-color: #232323;
+  font-family: 'Roboto', sans-serif;
 }
 
 #messageDisplay {
-  color: #fff;
-  font-size: 24px;
+  color: black;
+  font-size: 16px;
 }
 
 #container {
@@ -21,12 +22,15 @@ body {
   padding-bottom: 30%;
 }
 
-h1 {
+.h1-class {
   text-align: center;
   color: #fff;
+  padding: 10px;
 }
 
-.messageDisp {
+#stripe {
+  background: #fff;
+  height: 30px;
   text-align: center;
-  margin-bottom: 30px;
+  margin: 10px 0px;
 }

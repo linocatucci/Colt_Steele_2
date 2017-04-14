@@ -26,6 +26,7 @@ console.log(version5);
 console.log(version6);
 
 // changing style with the style property
+version3.style.background = '#fff';
 
 // srcset
 // logo.setAttribute('srcset', 'http://www.eastcottvets.co.uk/uploads/animals/gingerkitten.jpg');
