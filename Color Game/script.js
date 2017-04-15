@@ -29,7 +29,6 @@
 // generate 6 or whatever input it will be, random colors
 var numSquares = 6;
 var colors = generateRandomColors(numSquares);
-
 // "array" of squares which has the class .squares added.
 var squares = document.querySelectorAll('.square');
 // hard code a picked color from the array
@@ -69,7 +68,7 @@ easyBtn.addEventListener('click', function () {
             squares[i].style.display = 'none';
         }
     }
-    h1.style.background = "#232323";
+    h1.style.background = "steelblue";
     messageDisplay.textContent = '';
 })
 
@@ -90,7 +89,7 @@ hardBtn.addEventListener('click', function () {
         squares[i].style.display = 'block';
         squares[i].style.background = colors[i];
     }
-    h1.style.background = "#232323";
+    h1.style.background = "steelblue";
     messageDisplay.textContent = '';
 })
 
@@ -107,7 +106,7 @@ newGame.addEventListener('click', function () {
     for (var i = 0; i < squares.length; i++) {
         squares[i].style.background = colors[i];
     }
-    h1.style.background = "#232323";
+    h1.style.background = "steelblue";
     messageDisplay.textContent = '';
 })
 
