@@ -95,7 +95,7 @@ hardBtn.addEventListener('click', function () {
 
 newGame.addEventListener('click', function () {
     // generate all new colors
-    newGame.textContent = 'New Color?'
+    this.textContent = 'New colors?'
     colors = generateRandomColors(numSquares);
 
     // pick a new random color from the array
@@ -124,7 +124,7 @@ for (var i = 0; i < squares.length; i++) {
             messageDisplay.textContent = 'You Won!'
             h1.style.background = clickedColor;
             setWinningColor(clickedColor);
-            newGame.textContent = 'Play Again?'
+            newGame.textContent = 'Play Again?';
         } else {
             this.style.background = '#232323';
             messageDisplay.textContent = 'Try again';
