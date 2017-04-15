@@ -27,7 +27,8 @@
 ];
 */
 // generate 6 or whatever input it will be, random colors
-var colors = generateRandomColors(6);
+var numSquares = 6;
+var colors = generateRandomColors(numSquares);
 
 // "array" of squares which has the class .squares added.
 var squares = document.querySelectorAll('.square');
@@ -49,20 +50,54 @@ var easyBtn = document.querySelector('#easybtn');
 var hardBtn = document.querySelector('#hardbtn');
 
 easyBtn.addEventListener('click', function () {
+    numSquares = 3;
     easyBtn.classList.toggle('selected');
     hardBtn.classList.toggle('selected');
+    // generate all new colors
+    colors = generateRandomColors(numSquares);
+    // pick a new random color from the array
+    pickedColor = pickedColorF();
+    // change the display color in new picked color
+    ColorDisplay.textContent = pickedColor;
+    // if there is a color generated or assigned generateRandomColors(3) then add the colors to the squares
+    for (var i = 0; i < squares.length; i++) {
+        if (colors[i]) {
+            squares[i].style.background = colors[i];
+        } else {
+            // if there are no colors in the array (after 3)
+            // then display is none hide the bottom 3 squeres
+            squares[i].style.display = 'none';
+        }
+    }
+    h1.style.background = "#232323";
+    messageDisplay.textContent = '';
 })
 
 hardBtn.addEventListener('click', function () {
-
+    numSquares = 6;
     hardBtn.classList.toggle('selected');
     easyBtn.classList.toggle('selected');
+    colors = generateRandomColors(6);
+
+    // generate all new colors
+    colors = generateRandomColors(numSquares);
+    // pick a new random color from the array
+    pickedColor = pickedColorF();
+    // change the display color in new picked color
+    ColorDisplay.textContent = pickedColor;
+    // if there is a color generated or assigned generateRandomColors(3) then add the colors to the squares
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].style.display = 'block';
+        squares[i].style.background = colors[i];
+    }
+    h1.style.background = "#232323";
+    messageDisplay.textContent = '';
 })
 
 newGame.addEventListener('click', function () {
     // generate all new colors
     newGame.textContent = 'New Color?'
-    colors = generateRandomColors(6);
+    colors = generateRandomColors(numSquares);
 
     // pick a new random color from the array
     pickedColor = pickedColorF();
@@ -109,7 +144,7 @@ function setWinningColor(color) {
 function pickedColorF() {
     // create a random nr between 0-5
     // pick the nr corresponding in the colors array
-    var randomNR = Math.floor(Math.random() * 6);
+    var randomNR = Math.floor(Math.random() * numSquares);
     return colors[randomNR];
 }
 
