@@ -71,6 +71,7 @@ button {
   outline: none;
 }
 
+#info:hover,
 button:hover {
   color: white;
   background: steelblue;
