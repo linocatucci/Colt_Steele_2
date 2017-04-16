@@ -76,3 +76,27 @@ button:hover {
   color: white;
   background: steelblue;
 }
+
+.center {
+  margin-top: 50px;
+}
+
+.modal-header1 {
+  padding-bottom: 5px;
+}
+
+.modal-footer1 {
+  padding: 0;
+}
+
+.modal-footer1 .btn-group1 button1 {
+  height: 40px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: none;
+  border-right: 1px solid #ddd;
+}
+
+.modal-footer1 .btn-group1:last-child>button1 {
+  border-right: 0;
+}

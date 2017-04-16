@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style2.css">
 </head>
 
 <body>
@@ -19,20 +20,49 @@
         <span id="messageDisplay"></span>
         <button type="" class="mode" id="easybtn">Easy</button>
         <button type="" class="mode selected" id="hardbtn">Hard</button>
-        <button id="info">info</button>
-    </div>
+        <!-- Trigger the modal with a button 
+        class="btn btn-info btn-lg" -->
+        <button type="button" id="info" data-toggle="modal" data-target="#myModal">Info</button>
 
-    <div id="container">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-    </div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-    <script type="text/javascript" src="script.js">
-    </script>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header1">
+                        <button type="button1" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">The Great Color Game Intructions</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Guess the RGB color code on the top page</p>
+                        <ol>
+                            <li>In the squares below pick the color</li>
+                            <li>Easy mode will give you 3 squares to guess</li>
+                            <li>Hard mode will give you 6 squares to guess</li>
+                        </ol>
+                        <p>Happy playing!</p>
+                    </div>
+                    <div class="modal-footer1">
+                        <button type="button1" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="container">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap.js"></script>
+        <script type="text/javascript" src="script2.js"></script>
 </body>
 
 </html>
