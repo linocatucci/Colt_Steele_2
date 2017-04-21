@@ -9,3 +9,10 @@ $('button').click(function(){
 var text = $(this).text();
 console.log('You clicked ' + text)
 });
+
+
+$('input').keypress(function(event) {
+if(event.keypress === 13) { 
+    
+    console.log('you hit enter') }
+});
