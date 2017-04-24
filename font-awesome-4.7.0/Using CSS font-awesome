@@ -1,0 +1,5 @@
+Using CSS
+Copy the entire font-awesome directory into your project.
+In the <head> of your html, reference the location to your font-awesome.min.css.
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+Check out the examples to start using Font Awesome!

@@ -11,7 +11,7 @@ $('ul').on('click', 'li', function () {
 $('ul').on('click', 'span', function (event) {
     // alert('cliked on span')
     // delete the parent of the span, which is the li
-    $(this).parent().fadeOut(400, function () {
+    $(this).parent().fadeOut(200, function () {
         // the this below referres to the LI!
         $(this).remove();
     })
@@ -25,6 +25,13 @@ $('input[type=text]').on('keypress', function (event) {
         var inputText = $(this).val();
         $(this).val('');
         // create new li and add to ul use APPEND!
-        $('ul').append('<li><span>X</span> ' + inputText + '</li>');
+        $('ul').append('<li><span><i class="fa fa-trash-o" aria-hidden="true"></i></span> ' + inputText + '</li>');
     }
+});
+
+// selecting and changing!
+// select the pencil and change the input.
+$('.fa-pencil-square-o').on('click', function () {
+    // show input.
+    $('input[type=text').fadeToggle('');
 });
