@@ -1,0 +1,14 @@
+#container {
+    border: 1px solid gray;
+    width: 360px;
+    margin: 0 auto;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.align-center {
+    text-align: center;
+}

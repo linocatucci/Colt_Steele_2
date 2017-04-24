@@ -32,8 +32,14 @@ $('h1').text('new text!!');
 
 $('li').text('rusty, colts dog is adorable');
 
+// Get text from inputs is .val()
+$('input').val();
+// or set the text to the input to empty string
+$('input[type=text]').val('');
+
 // html retrieves the inner html of the element
 $('ul').html();
 
 $('ul').html('<li>I have hacked your </li><li>Rusty is still adorable</li>');
-$('li').html('<a href='http://www.google.com'>click me</a>');
+$('li').html('<a href='
+        http: //www.google.com'>click me</a>');
