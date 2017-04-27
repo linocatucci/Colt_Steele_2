@@ -32,10 +32,8 @@
 //     return avgScore;
 // }
 
-// average(scores);
-
-
-// average(scores2);
+// console.log(average(scores));
+// console.log(average(scores2));
 
 // Array with an forEach loop
 var scores = [90, 98, 89, 100, 100, 86, 94];
