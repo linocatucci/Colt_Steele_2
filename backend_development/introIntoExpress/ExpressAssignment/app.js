@@ -47,6 +47,8 @@ app.get('*', function (req, res) {
     res.send('Sorry, page not found! What are you doing with your life?!');
 })
 
+app.list
+
 app.listen('3000', function () {
     console.log('Server has started for Express Assignment!');
 })
