@@ -13,7 +13,7 @@ app.get('/fallinlovewith/:thing', function (req, res) {
     res.render('love.ejs', {
         thingVar: thing
     })
-})
+});
 
 // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
