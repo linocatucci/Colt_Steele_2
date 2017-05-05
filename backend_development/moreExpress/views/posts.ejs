@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="app.css">
+
+<h1>the Posts page</h1>
+<h2>for loop</h2>
+<% for(var i =0; i<posts.length; i++){ %>
+<li>
+    <%= posts[i].title %> - <strong><%= posts[i].author %></strong>
+</li>
+<% } %>
+<br>
+<h2>forEach loop</h2>
+<% posts.forEach(function(posts){ %>
+    <li>
+    <%= posts.title %> - <strong><%= posts.author %></strong>
+    </li>
+<% }) %>
