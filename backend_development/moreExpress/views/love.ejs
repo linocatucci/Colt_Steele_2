@@ -1,5 +1,27 @@
+<% include partials/header %>
 <h1>You fell in love with:
     <%= thingVar %>
 </h1>
 
-<p>P.S this is the love.ejs file!</p>
+<% if (thingVar.toLowerCase()=== "rusty"){ %>
+    <p>GOOD CHOICE! RUSTY IS THE BEST!</p>
+    <% } else { %>
+    <p>Bad Choice! You should have said Rusty!</p>
+
+    <% } %>
+
+  <p>P.S this is the love.ejs file!</p>
+
+
+<!-- 
+EJS: Conditionals and Loops
+
+when you need to template the javascript syntax in a EJS file use
+for if statements and loops
+
+<%  %>
+
+When you need to template javascript variables and output in a EJS file use
+<%=  %>
+-->
+<% include partials/footer %>
