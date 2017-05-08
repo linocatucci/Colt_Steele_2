@@ -13,7 +13,7 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
-// 2 routes, /search and /results
+// 2 routes, / and /results
 
 app.get('/', function (req, res) {
     res.render('search')
@@ -22,6 +22,7 @@ app.get('/', function (req, res) {
 app.get('/results', function (req, res) {
     // get data from the query string
     // console.log(req.query.searchtext);
+    console.log(req)
     var query = req.query.searchtext;
     // set url string
     var url = 'http://www.omdbapi.com/?s=' + query;
@@ -34,7 +35,7 @@ app.get('/results', function (req, res) {
             // om JSON terug te krijgen vanuit een string gebruikt dan JSON.parse(object)
             var data = JSON.parse(body);
             // console.log(data);
-            // console.log(typeof results)
+            // console.log(typeof data)
             // res.send(data);
             // res.send(data['Search'][0]);
             // res.send(data.Search[0].Title);
