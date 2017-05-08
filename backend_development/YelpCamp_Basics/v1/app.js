@@ -1,8 +1,11 @@
 var express = require('express');
 var request = require('request');
+var bodyParser = require('body-parser');
 var app = express();
 app.set('view engine', 'ejs');
-
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.get('/', function (req, res) {
     console.log('This will be the landing page soon!');
@@ -33,6 +36,13 @@ app.get('/campgrounds', function (req, res) {
         campgrounds: campgrounds
     });
 });
+
+app.post('/campgrounds', function (req, res) {
+    res.send('post werkt.')
+    // get data from form
+    // add to campground arrya
+    // redirect to campgrounds page
+})
 
 // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
