@@ -7,7 +7,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// tell nodejs to use the public folder with js and css.....
+// tell nodejs to use the public folder with js and css.
 app.use(express.static('public'));
 
 var campgrounds = [{
