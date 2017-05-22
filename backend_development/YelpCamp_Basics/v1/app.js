@@ -15,16 +15,16 @@ var campgrounds = [{
     image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
 }, {
     name: 'Devils Peak',
-    image: 'https://farm1.staticflickr.com/661/32853307921_c804935e58.jpg'
+    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
 }, {
     name: 'Mosquito Creek',
     image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg'
 }, {
     name: 'Devils Peak',
-    image: 'https://farm1.staticflickr.com/661/32853307921_c804935e58.jpg'
+    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
 }, {
     name: 'Devils Peak',
-    image: 'https://farm1.staticflickr.com/661/32853307921_c804935e58.jpg'
+    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
 }, {
     name: 'Mosquito Creek',
     image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg'
@@ -33,7 +33,7 @@ var campgrounds = [{
     image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
 }, {
     name: 'Devils Peak',
-    image: 'https://farm1.staticflickr.com/661/32853307921_c804935e58.jpg'
+    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
 }];
 
 app.get('/', function (req, res) {

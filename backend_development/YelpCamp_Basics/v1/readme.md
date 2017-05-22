@@ -19,3 +19,13 @@ Each campground has a:
 #Style the campgrounds page
 * add a better header/title
 * make campgrounds display in a grid
+
+4.
+#Style the navbar and form
+* add a navbar to all templates
+* Style the new campground form
+
+5.
+#Intro in to Databases
+* what is a database
+* SQL(relational) vs. NoSQL(non-relational)
