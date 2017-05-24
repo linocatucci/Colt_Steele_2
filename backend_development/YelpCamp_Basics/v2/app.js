@@ -1,6 +1,7 @@
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var app = express();
 app.set('view engine', 'ejs');
 // 
@@ -9,6 +10,32 @@ app.use(bodyParser.urlencoded({
 }));
 // tell nodejs to use the public folder with js and css.
 app.use(express.static('public'));
+
+// create the database yelp_camp with the db connection 
+mongoose.connect('mongodb://localhost/yelp_camp');
+
+// SCHEMA SETUP FOR YELP CAMP CAMPGROUNDS
+var campgroundSchema = new mongoose.Schema({
+    name: String,
+    image: String
+})
+
+var Campground = mongoose.model('Campground', campgroundSchema);
+
+Campground.create(
+    {
+    name: 'Granite Hill',
+    image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
+    },   
+    function(err, campground){
+        if (err){
+            console.log(err)
+        } else {
+            console.log('A campground was added to the DB!')
+            console.log(campground);
+        }
+});
+  
 
 var campgrounds = [{
     name: 'Granite Hill',
