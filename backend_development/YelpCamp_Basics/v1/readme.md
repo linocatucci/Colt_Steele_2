@@ -29,3 +29,36 @@ Each campground has a:
 #Intro in to Databases
 * what is a database
 * SQL(relational) vs. NoSQL(non-relational)
+
+6.
+#Intro into MongoDB
+* what is MongoDB
+    - non-SQL database - works with key:value pairs
+    - 
+* Why are we using it?
+    - part of MEAN stack
+    - very popular db in web development and full stack development
+    - very good tools
+* Let's install it!
+
+7.
+#Our first MongoDB commands
+* mongod
+* mongo
+* help
+* show dbs
+* use 'name of db' (creates a new db) or use 'name of db' to swith to db
+* insert (a collection) db.dogs.insert()
+    - db is de current switched database
+    - dogs is the object
+    - insert (inserts a new dog ie.)
+* find
+* update
+* remove
+
+8.
+#Mongoose
+* What is Mongoose?
+    - 
+* Why are we using it?
+* Interact with a Mongo Database using Mongoose
