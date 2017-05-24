@@ -1,0 +1,17 @@
+{
+  "name": "yelpcampbasics",
+  "version": "1.0.0",
+  "description": "Yelp Camp Basics Initial routing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lino",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "request": "^2.81.0"
+  }
+}
