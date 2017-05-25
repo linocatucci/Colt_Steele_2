@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// tell nodejs to use the public folder with js and css.
+// tell nodejs to use the public folder with js and css files.
 app.use(express.static('public'));
 
 // create the database yelp_camp with the db connection 
@@ -17,85 +17,112 @@ mongoose.connect('mongodb://localhost/yelp_camp');
 // SCHEMA SETUP FOR YELP CAMP CAMPGROUNDS
 var campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
+
 })
 
 var Campground = mongoose.model('Campground', campgroundSchema);
 
-Campground.create(
-    {
-    name: 'Granite Hill',
-    image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
-    },   
-    function(err, campground){
-        if (err){
-            console.log(err)
-        } else {
-            console.log('A campground was added to the DB!')
-            console.log(campground);
-        }
-});
-  
+// Campground.create({
+//         name: 'Devils Peak',
+//         image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg',
+//         description: 'This is a huge granite hill, no bathroom. Beautiful mountain'
+//     },
+//     function (err, campground) {
+//         if (err) {
+//             console.log(err)
+//         } else {
+//             console.log('A campground was added to the DB!')
+//             console.log(campground);
+//         }
+//     });
 
-var campgrounds = [{
-    name: 'Granite Hill',
-    image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
-}, {
-    name: 'Devils Peak',
-    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
-}, {
-    name: 'Mosquito Creek',
-    image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg'
-}, {
-    name: 'Devils Peak',
-    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
-}, {
-    name: 'Devils Peak',
-    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
-}, {
-    name: 'Mosquito Creek',
-    image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg'
-}, {
-    name: 'Granite Hill',
-    image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
-}, {
-    name: 'Devils Peak',
-    image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
-}];
+
+// var campgrounds = [{
+//     name: 'Granite Hill',
+//     image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
+// }, {
+//     name: 'Devils Peak',
+//     image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
+// }, {
+//     name: 'Mosquito Creek',
+//     image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg'
+// }, {
+//     name: 'Devils Peak',
+//     image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
+// }, {
+//     name: 'Devils Peak',
+//     image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
+// }, {
+//     name: 'Mosquito Creek',
+//     image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg'
+// }, {
+//     name: 'Granite Hill',
+//     image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg'
+// }, {
+//     name: 'Devils Peak',
+//     image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
+// }];
 
 app.get('/', function (req, res) {
     console.log('This will be the landing page soon!');
     res.render('landing');
 });
 
+//INDEX - show all campgrounds
 app.get('/campgrounds', function (req, res) {
     console.log('Camground page!');
-    //res.render('campgrounds');
-    res.render('campgrounds', {
-        campgrounds: campgrounds
-    });
+    // get all the campgrounds from the DB!
+    Campground.find({}, function (err, allCampgrounds) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render('campgrounds', {
+                campgrounds: allCampgrounds
+            });
+        }
+    })
+    // res.render('campgrounds', {campgrounds: campgrounds});
+
 });
 // convention to have the post method (add campgrounds) the same name as get the campgrounds
+
+//CREATE - add new campground to DB
 app.post('/campgrounds', function (req, res) {
     // res.send('post werkt.')
     // get data from form
     var name = req.body.name;
     var image = req.body.image;
+    var description = req.body.description;
     var newCampground = {
         name: name,
-        image: image
+        image: image,
+        description: description
     }
     // add to campground array
-    campgrounds.push(newCampground);
-
-    // redirect to campgrounds page
-    res.redirect('/campgrounds')
+    Campground.create(newCampground, function (err, newCreatedCampground) {
+        if (err) {
+            console.log(err)
+        } else {
+            // redirect to campgrounds page
+            res.redirect('/campgrounds')
+        }
+    });
 })
 // convention to have the GET method (new campgrounds) with the campgrounds/new format.
 // this is the form to add a new campground.
+
+//NEW - show form to create new campground
 app.get('/campgrounds/new', function (req, res) {
     res.render('new');
 })
+// always after the new otherwise new will be used as id
+app.get('/campgrounds/:id', function (req, res) {
+    //find the campground with provided ID
+    //render show template with that campground 
+    res.send('This will be the show page one day')
+});
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {

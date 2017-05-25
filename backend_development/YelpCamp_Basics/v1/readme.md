@@ -67,3 +67,20 @@ Each campground has a:
 * install and configure mongoose
 * Setup campground model
 * Use campground model inside of our routes
+
+10.
+#Show pages
+* Review the RESTful routes we've seen so far
+* Add description to our campground model
+* Show db.collecion.drop()
+* Add a show route/template
+
+RESTFUL ROUTES
+
+name    url                  verb    description
+===============================================================
+INDEX   /campgrounds         GET     Display all campgrounds
+INDEX   /dogs                GET     Display a list of all campground
+NEW     /campgrounds/new     GET     Display form to make a new campground
+CREATE  /campgrounds         POST    Add new campground to DB
+SHOW    /campgrounds/:id     GET     Shows info about one campground
