@@ -65,6 +65,7 @@ var Campground = mongoose.model('Campground', campgroundSchema);
 //     image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg'
 // }];
 
+//INDEX - return to home page
 app.get('/', function (req, res) {
     console.log('This will be the landing page soon!');
     res.render('landing');
@@ -78,7 +79,7 @@ app.get('/campgrounds', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            res.render('campgrounds', {
+            res.render('index', {
                 campgrounds: allCampgrounds
             });
         }
@@ -117,11 +118,23 @@ app.post('/campgrounds', function (req, res) {
 app.get('/campgrounds/new', function (req, res) {
     res.render('new');
 })
+
+// SHOW - shows more info about one campground
 // always after the new otherwise new will be used as id
 app.get('/campgrounds/:id', function (req, res) {
     //find the campground with provided ID
-    //render show template with that campground 
-    res.send('This will be the show page one day')
+    var campID = req.params.id;
+    Campground.findById(campID, function (err, foundCampground) {
+        if (err) {
+            console.log(err)
+        } else {
+            // render the show campground template with that campground
+            //render show template with that campground 
+            res.render('show', {
+                campground: foundCampground
+            });
+        }
+    });
 });
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded

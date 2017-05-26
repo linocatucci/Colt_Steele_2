@@ -80,7 +80,29 @@ RESTFUL ROUTES
 name    url                  verb    description
 ===============================================================
 INDEX   /campgrounds         GET     Display all campgrounds
-INDEX   /dogs                GET     Display a list of all campground
 NEW     /campgrounds/new     GET     Display form to make a new campground
 CREATE  /campgrounds         POST    Add new campground to DB
-SHOW    /campgrounds/:id     GET     Shows info about one campground
+SHOW    /campgrounds/:id     GET     Shows info about one campground, has an id in the url
+
+#RESTful Routing
+## Introduction
+* Define REST andn explain WHY it matters
+* List all 7 RESTful routes
+* Show expample of RESTful routing in practice
+
+REST  - a mapping between HTTP routes and CRUD (create, read, update and destroy)
+CREATE
+READ
+UPDATE
+DESTROY / DELETE
+
+A table of all 7 RESTful routes
+
+name            path                    HTTP verb       purpose
+Index           /campgrounds            GET             List of all campgrounds
+New             /campgrounds/new        GET             Show new campground form
+Create          /campgrounds            POST            Create a new campground, then redirect somewhere
+Show            /campgrounds/:id        GET             show info about one specific campground
+Edit            /campground/:id/edit    GET             show edit form for one campground
+Update          /campground/:id         PUT             Update a particular campground, then redirect somewhere
+Destroy         /campground/:id         DELETE          Delete a particular campground, then redirect somewhere  
