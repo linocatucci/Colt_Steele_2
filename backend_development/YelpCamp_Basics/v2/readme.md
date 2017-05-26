@@ -59,6 +59,11 @@ Each campground has a:
 8.
 #Mongoose
 * What is Mongoose?
-    - 
 * Why are we using it?
 * Interact with a Mongo Database using Mongoose
+
+9.
+# Add mongoose
+* install and configure mongoose
+* Setup campground model
+* Use campground model inside of our routes
