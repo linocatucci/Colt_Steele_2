@@ -47,6 +47,7 @@ app.get('/', function (req, res) {
     res.redirect('/blogs')
 })
 
+// INDEX ROUTE
 app.get('/blogs', function (req, res) {
     // retrieve all data from the database
     Blog.find({}, function (err, blogs) {
@@ -60,6 +61,30 @@ app.get('/blogs', function (req, res) {
     });
 });
 
+// NEW ROUTE - show form to create new blog post
+app.get('/blogs/new', function (req, res) {
+    res.render('new');
+})
+
+// CREATE ROUTE
+app.post('/blogs', function (req, res) {
+    var title = req.body.title;
+    var image = req.body.image;
+    var body = req.body.body;
+    var newBlog = {
+        title: title,
+        image: image,
+        body: body
+    }
+    Blog.create(newBlog, function (err, newCreatedBlog) {
+        if (err) {
+            console.log('Error!')
+            res.render('new')
+        } else(
+            res.redirect('/blogs')
+        )
+    });
+})
 
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
