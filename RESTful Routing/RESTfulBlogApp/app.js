@@ -25,14 +25,15 @@ var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
-    create: {
+    created: {
         type: Date,
         default: Date.now
     }
 });
 var Blog = mongoose.model('Blog', blogSchema);
 
-// Test blog to have something in the db to show for the INDEX route
+// Test blog to have something in the db to show
+// for the INDEX route
 // Blog.create({
 //     title: "Test blog",
 //     image: "https://unsplash.com/search/dog?photo=D9XX3Cjoh2s",
