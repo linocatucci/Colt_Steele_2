@@ -1,0 +1,18 @@
+<% include ./partials/header %>
+<h1>This is the homepage of the blogs!</h1>
+
+<div class='row text-center' style='display:flex; flex-wrap:wrap;'>
+        <% blogs.forEach(function(blog){ %>
+            <div class='col-md-3 col-sm-6'>
+                <div class='thumbnail'>
+                    <div class='caption'>
+                        <h2><%= blog.title %></h2>
+                    </div>
+                    <img src="<%= blog.image %>" >
+                    <span><%= blog.created %></span>
+                    <p><%= blog.body %></p>
+                </div>
+            </div>
+        <% }); %>
+</div>
+<% include ./partials/footer %>
