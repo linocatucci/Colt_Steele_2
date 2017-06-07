@@ -32,7 +32,7 @@
 * Add Edit Form
 * Add Update Route
 * Add Update Form
-* Add Method-Override
+* Add Method-Override (npm install method-override --save, it will also need the ?_method=PUT)
 
 ##DESTROYYYYYY
 * Add Destroy Route
