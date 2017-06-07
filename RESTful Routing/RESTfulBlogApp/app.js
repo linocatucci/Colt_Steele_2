@@ -84,8 +84,27 @@ app.post('/blogs', function (req, res) {
             res.redirect('/blogs')
         )
     });
-})
+});
 
+// SHOW ROUTE
+// shows one particular blog in details based on the ID
+app.get('/blogs/:id', function (req, res) {
+    // mongoose method (findById())
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
+            res.redirect('/blogs')
+        } else {
+            res.render('show', {
+                // inside the template the foundBlog is named blog
+                blog: foundBlog
+            });
+        }
+    })
+});
+
+app.get('/blogs/:id/edit', function (req, res) {
+    res.send('This is the edit page!')
+})
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
