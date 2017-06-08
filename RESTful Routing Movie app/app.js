@@ -74,10 +74,27 @@ app.get('/movies', function (req, res) {
 });
 
 // NEW ROUTE - show form to create new movie information
+app.get('/movies/new', function (req, res) {
+    res.render('new');
+});
 
 
 // CREATE ROUTE
+app.post('/movies', function (req, res) {
+    Movie.create(req.body.movie, function (err, newMovie) {
+        if (err) {
+            res.render('new')
+        } else {
+            res.redirect('/movies')
+        }
+    });
+});
 
+// SHOW ROUTE
+// shows one particular MOVIE in details based on the ID
+app.get('/movie/:id', function (req, res) {
+    res.send()
+})
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
