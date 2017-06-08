@@ -1,0 +1,11 @@
+<h1>List of your favorite Movies</h1>
+
+<% movies.forEach(function(movie){ %>
+    <div>
+        <h2><%=movie.title %></h2>
+        <img src="<%=movie.image %>">
+        <p><%=movie.actors %></p>
+        <p><%=movie.body %></p>
+        <span><%=movie.created %></span>
+    </div>
+<% }) %>
