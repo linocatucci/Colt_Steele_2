@@ -1,6 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var expressSanitizer = require('express-sanitizer');
 var app = express();
 
 // APP CONFIG
@@ -10,6 +12,8 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(methodOverride('_method'));
+app.use(expressSanitizer());
 
 // database schema
 /*
@@ -68,24 +72,88 @@ app.get('/blogs/new', function (req, res) {
 
 // CREATE ROUTE
 app.post('/blogs', function (req, res) {
-    var title = req.body.title;
-    var image = req.body.image;
-    var body = req.body.body;
-    var newBlog = {
-        title: title,
-        image: image,
-        body: body
-    }
-    Blog.create(newBlog, function (err, newCreatedBlog) {
+    // var title = req.body.title;
+    // var image = req.body.image;
+    // var body = req.body.body;
+    // var newBlog = {
+    //     title: title,
+    //     image: image,
+    //     body: body
+    // }
+    console.log(req.body)
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    console.log('=====================')
+    console.log(req.body)
+    Blog.create(req.body.blog, function (err, newCreatedBlog) {
         if (err) {
-            console.log('Error!')
-            res.render('new')
-        } else(
-            res.redirect('/blogs')
-        )
+            res.render('new');
+        } else {
+            res.redirect('/blogs');
+        }
     });
-})
+});
 
+// SHOW ROUTE
+// shows one particular blog in details based on the ID
+app.get('/blogs/:id', function (req, res) {
+    // mongoose method (findById())
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
+            res.redirect('/blogs')
+        } else {
+            res.render('show', {
+                // inside the template the foundBlog is named blog
+                blog: foundBlog
+            });
+        }
+    })
+});
+
+// EDIT ROUTE
+app.get('/blogs/:id/edit', function (req, res) {
+    Blog.findById(req.params.id, function (err, foundBlog) {
+
+        if (err) {
+            res.redirect('/blogs')
+        } else {
+            res.render('edit', {
+                // inside the template the foundBlog is named blog
+                blog: foundBlog
+            });
+        }
+    });
+});
+
+// UPDATE ROUTE
+// * Add Method-Override (npm install method-override --save, it will also need the ?_method=PUT)
+// in the form
+app.put('/blogs/:id', function (req, res) {
+    console.log(req.body)
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    console.log('=====================')
+    console.log(req.body)
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (err, updatedBlog) {
+        if (err) {
+            res.redirect('/blogs');
+        } else {
+            // res.redirect('/blogs/' + updatedBlog.id); // or
+            res.redirect('/blogs/' + req.params.id);
+        }
+    })
+});
+
+// DESTROY ROUTE
+app.delete('/blogs/:id', function (req, res) {
+    // TO TEST THE ROUTE: res.send('YOU REACHED THE DETROY ROUTE!')
+    // DESTROY BLOG
+    Blog.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            res.redirect('/blogs')
+        } else {
+            res.redirect('/blogs')
+        }
+    })
+})
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
@@ -95,4 +163,4 @@ app.post('/blogs', function (req, res) {
 // lokaal gebruiken
 app.listen('3000', function () {
     console.log('The BlogPost App Server has started!');
-})
+});

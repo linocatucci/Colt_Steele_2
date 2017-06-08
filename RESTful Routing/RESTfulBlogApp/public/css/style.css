@@ -5,3 +5,11 @@ i.icon {
 .main.container {
     margin-top: 5em;
 }
+
+h1 {
+    margin-top: 50px;
+}
+
+#delete_form {
+    display: inline-block;
+}

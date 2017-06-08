@@ -32,13 +32,13 @@
 * Add Edit Form
 * Add Update Route
 * Add Update Form
-* Add Method-Override
+* Add Method-Override (npm install method-override --save, it will also need the ?_method=PUT)
 
 ##DESTROYYYYYY
 * Add Destroy Route
 * Add Edit and Destroy Links
 
 ##Final Updates
-* Sanitize blog body
+* Sanitize blog body (npm install express-sanitizer --save prevent(removes)the script in the input fields of forms)
 * Style Index
 * Update REST Table
