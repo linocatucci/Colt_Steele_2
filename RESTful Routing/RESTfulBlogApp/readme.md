@@ -39,6 +39,6 @@
 * Add Edit and Destroy Links
 
 ##Final Updates
-* Sanitize blog body
+* Sanitize blog body (npm install express-sanitizer --save prevent(removes)the script in the input fields of forms)
 * Style Index
 * Update REST Table

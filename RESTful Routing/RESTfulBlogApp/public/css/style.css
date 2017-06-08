@@ -9,3 +9,7 @@ i.icon {
 h1 {
     margin-top: 50px;
 }
+
+#delete_form {
+    display: inline-block;
+}

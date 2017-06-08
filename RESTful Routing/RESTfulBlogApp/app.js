@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var expressSanitizer = require('express-sanitizer');
 var app = express();
 
 // APP CONFIG
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(methodOverride('_method'));
+app.use(expressSanitizer());
 
 // database schema
 /*
@@ -78,6 +80,10 @@ app.post('/blogs', function (req, res) {
     //     image: image,
     //     body: body
     // }
+    console.log(req.body)
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    console.log('=====================')
+    console.log(req.body)
     Blog.create(req.body.blog, function (err, newCreatedBlog) {
         if (err) {
             res.render('new');
@@ -122,6 +128,10 @@ app.get('/blogs/:id/edit', function (req, res) {
 // * Add Method-Override (npm install method-override --save, it will also need the ?_method=PUT)
 // in the form
 app.put('/blogs/:id', function (req, res) {
+    console.log(req.body)
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    console.log('=====================')
+    console.log(req.body)
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (err, updatedBlog) {
         if (err) {
             res.redirect('/blogs');
@@ -134,7 +144,15 @@ app.put('/blogs/:id', function (req, res) {
 
 // DESTROY ROUTE
 app.delete('/blogs/:id', function (req, res) {
-    res.send('it worked!')
+    // TO TEST THE ROUTE: res.send('YOU REACHED THE DETROY ROUTE!')
+    // DESTROY BLOG
+    Blog.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            res.redirect('/blogs')
+        } else {
+            res.redirect('/blogs')
+        }
+    })
 })
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
