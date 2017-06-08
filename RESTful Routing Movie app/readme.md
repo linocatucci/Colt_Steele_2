@@ -5,9 +5,9 @@
 * List all 7 RESTful routes
 * Show example of RESTful routing in practice
 
-##Blog Index
-* Setup the Blog App
-* Create the Blog model
+##movie Index
+* Setup the movie App
+* Create the movie model
 * Add INDEX route and template
 
 ##Basic Layout
@@ -39,6 +39,6 @@
 * Add Edit and Destroy Links
 
 ##Final Updates
-* Sanitize blog body
+* Sanitize movie body
 * Style Index
 * Update REST Table

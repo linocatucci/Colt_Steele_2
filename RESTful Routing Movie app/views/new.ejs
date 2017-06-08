@@ -1,0 +1,26 @@
+<% include ./partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">New Movie</div>
+    <form action='/movies' method='POST' class='ui form'>
+        <div class="field">
+            <label>Movie Title</label>
+            <input type="text" name="movie[title]" placeholder="Movie Title" required>
+        </div>
+        <div class="field">
+            <label>Movie Image</label>
+            <input type="text" name="movie[image]" placeholder="Movie Image" required>
+        </div>
+        <div class="field">
+            <label>Movie Actors</label>
+            <input type="text" name="movie[actors]" placeholder="Actors" required >
+        </div>
+        <div class="field">
+            <label>Movie Information</label>
+            <textarea name="movie[body]" placeholder='Movie Info goes here' required></textarea>
+        </div>
+        <button class="ui primary basic button">Submit</button>
+    </form>
+</div>
+
+<% include ./partials/footer %>

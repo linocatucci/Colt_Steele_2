@@ -1,11 +1,18 @@
-<h1>List of your favorite Movies</h1>
-
-<% movies.forEach(function(movie){ %>
-    <div>
-        <h2><%=movie.title %></h2>
-        <img src="<%=movie.image %>">
-        <p><%=movie.actors %></p>
-        <p><%=movie.body %></p>
-        <span><%=movie.created %></span>
+<% include ./partials/header %>
+<div class="ui main text container">
+    <div class="ui huge header">RESTful Movie app</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+           <% movies.forEach(function(movie){ %>
+                    <div>
+                        <h2><%=movie.title %></h2>
+                        <img src="<%=movie.image %>">
+                        <p><%=movie.actors %></p>
+                        <p><%=movie.body %></p>
+                        <span><%=movie.created %></span>
+                    </div>
+                <% }); %>
+        </div>
     </div>
-<% }) %>
+</div>
+<% include ./partials/footer %>

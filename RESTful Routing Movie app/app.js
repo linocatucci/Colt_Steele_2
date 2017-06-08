@@ -73,6 +73,12 @@ app.get('/movies', function (req, res) {
     });
 });
 
+// NEW ROUTE - show form to create new movie information
+
+
+// CREATE ROUTE
+
+
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
 //     console.log('Server has started for Express ESJ Assignment!')
