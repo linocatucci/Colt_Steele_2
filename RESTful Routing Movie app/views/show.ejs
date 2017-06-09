@@ -1,0 +1,22 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+    <div class="ui huge header"><%= movie.title %></div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centered rounded image" src="<%=movie.image %>" >
+        </div>
+        <div class="content">
+            <span><%= movie.created.toDateString() %></span> 
+        </div>
+        <div class="description">
+             <p><%= movie.body %></p>
+        </div>
+        <div class="edit_submit_buttons">
+        <a href="/movies/<%=movie._id %>/edit"><button class="ui yellow basic button">Edit</button></a>
+        <form action="/movies/<%=movie._id %>?_method=DELETE" method="POST" id="delete_form">
+             <button class="ui red basic button">Delete</button>
+        </form>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>

@@ -10,6 +10,14 @@ i.icon {
     margin-top: -0.142857em;
 }
 
-.ui.segment {
+.ui.text.container {
     margin: 5rem 0;
+}
+
+#delete_form {
+    display: inline-block;
+}
+
+.edit_submit_buttons {
+    margin-top: 1em;
 }

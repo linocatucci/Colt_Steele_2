@@ -2,16 +2,17 @@
 <div class="ui main text container">
     <div class="ui huge header">RESTful Movie app</div>
     <div class="ui top attached segment">
-        <div class="ui divided items">
-           <% movies.forEach(function(movie){ %>
+    <% movies.forEach(function(movie){ %>
+           <div class="ui divided items">
                     <div>
                         <h2><%=movie.title %></h2>
                         <img src="<%=movie.image %>">
                         <p><%=movie.actors %></p>
                         <p><%=movie.body %></p>
                         <span><%=movie.created %></span>
+                        <a href="/movies/<%=movie._id%>">Read More</a>
                     </div>
-                <% }); %>
+            <% }); %>
         </div>
     </div>
 </div>

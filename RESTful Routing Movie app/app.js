@@ -54,20 +54,20 @@ var Movie = mongoose.model('Movie', movieSchema);
 //     body: "New Jersey mafia family movie"
 // });
 
-// INDEX ROUTE
+// INDEX ROUTE + REDIRECT
 // redirect from home
 app.get('/', function (req, res) {
     res.redirect('/movies')
 });
 
+// INDEX ROUTE
 app.get('/movies', function (req, res) {
-    // retrieve all movie data (movies) from the database
-    Movie.find({}, function (err, movies) {
+    Movie.find({}, function (err, allMovies) {
         if (err) {
             console.log(err)
         } else {
             res.render('index', {
-                movies: movies
+                movies: allMovies
             });
         }
     });
@@ -75,9 +75,8 @@ app.get('/movies', function (req, res) {
 
 // NEW ROUTE - show form to create new movie information
 app.get('/movies/new', function (req, res) {
-    res.render('new');
+    res.render('new')
 });
-
 
 // CREATE ROUTE
 app.post('/movies', function (req, res) {
@@ -92,9 +91,47 @@ app.post('/movies', function (req, res) {
 
 // SHOW ROUTE
 // shows one particular MOVIE in details based on the ID
-app.get('/movie/:id', function (req, res) {
-    res.send()
+app.get('/movies/:id', function (req, res) {
+    Movie.findById(req.params.id, function (err, foundMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else(
+            res.render('show', {
+                movie: foundMovie
+            })
+        )
+    });
+});
+
+// EDIT ROUTE (Show edit form for one MOVIE)
+app.get('/movies/:id/edit', function (req, res) {
+    Movie.findById(req.params.id, function (err, foundMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.render('edit', {
+                movie: foundMovie
+            })
+        }
+    })
+});
+
+// UPDATE ROUTE	/movies/:id	PUT
+app.put('/movies/:id', function (req, res) {
+    // findByIdAndUpdate (id, newData, callback)
+    Movie.findByIdAndUpdate(req.params.id, req.body.movie, function (err, updatedMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.redirect('/movies/' + req.params.id)
+        }
+    })
 })
+
+// DESTROY ROUTE Destroy	/dogs/:id	DELETE	
+// Delete a particular dog, then redirect somewhere	Dog.findByIdAndRemove()
+
+
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
