@@ -1,19 +1,36 @@
-<% include ./partials/header %>
-<div class="ui main text container">
-    <div class="ui huge header">RESTful Movie app</div>
+<% include partials/header %>
+   <div class="ui main text container">
+   	<div class="ui huge header">Favorite Movie Site</div>
     <div class="ui top attached segment">
-    <% movies.forEach(function(movie){ %>
-           <div class="ui divided items">
-                    <div>
-                        <h2><%=movie.title %></h2>
-                        <img src="<%=movie.image %>">
-                        <p><%=movie.actors %></p>
-                        <p><%=movie.body %></p>
-                        <span><%=movie.created %></span>
-                        <a href="/movies/<%=movie._id%>">Read More</a>
-                    </div>
-            <% }); %>
-        </div>
-    </div>
+<div class="ui divided items">
+	<% movies.forEach(function(movie){ %>
+	 <div class="item">
+	    <div class="image">
+	      <img src="<%= movie.image %>">
+	    </div>
+	    <div class="content">
+	      <a class="header"><%= movie.title %></a>
+	      <div class="meta">
+	        <span class="cinema"><%= movie.created.toDateString() %></span>
+	      </div>
+	      <div class="description">
+	        <p><%= movie.body.substring(0,100); %></p>
+	      </div>
+          <div class="description">
+	        <p><%= movie.actors %></p>
+	      </div>
+	      <div class="extra">
+	        <a href="/movies/<%=movie._id %>">
+                <button class="ui blue basic button">Read More</button>
+	        </a>
+	      </div>
+	    </div>
+	  </div>
+	<% }); %>
 </div>
-<% include ./partials/footer %>
+</div>
+    
+  </div>
+<% include partials/footer %>
+
+ 

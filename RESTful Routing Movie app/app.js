@@ -130,8 +130,16 @@ app.put('/movies/:id', function (req, res) {
 
 // DESTROY ROUTE Destroy	/dogs/:id	DELETE	
 // Delete a particular dog, then redirect somewhere	Dog.findByIdAndRemove()
-
-
+app.delete('/movies/:id', function (req, res) {
+    // findByIdAndUpdate (id, newData, callback)
+    Movie.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.redirect('/movies')
+        }
+    })
+})
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
