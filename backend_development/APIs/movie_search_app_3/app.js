@@ -12,9 +12,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', function (req, res) {
-    // res.render('search')
-    res.send('here comes the search page!')
-})
+    res.redirect('/search')
+});
+
+app.get('/search', function (req, res) {
+    res.render('search')
+});
+
 //http: //www.omdbapi.com/?t=sicario&plot=full&apikey=ed6ba6e4
 app.get('/results', function (req, res) {
     request('http://www.omdbapi.com/?s=star' + apikey, function (err, response, body) {
