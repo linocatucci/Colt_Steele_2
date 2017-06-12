@@ -2,7 +2,6 @@ var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
 var app = express();
-var apikey = '&apikey=ed6ba6e4'
 
 // APP CONFIG
 app.set('view engine', 'ejs');
@@ -12,20 +11,19 @@ app.use(bodyParser.urlencoded({
 }));
 
 // ROUTE CONFIG:
-// REDIRECT TO SEARCH ROUTE
+// INDEX TO SEARCH PAGE
 app.get('/', function (req, res) {
-    res.redirect('/search')
-});
-
-// INDEX ROUTE - SEARCH
-app.get('/search', function (req, res) {
-
     res.render('search')
 });
 
+
 //http: //www.omdbapi.com/?t=sicario&plot=full&apikey=ed6ba6e4
 app.get('/results', function (req, res) {
-    request('http://www.omdbapi.com/?s=star' + apikey, function (err, response, body) {
+    // info from the query string
+    var apikey = '&apikey=ed6ba6e4';
+    var query = req.query.search;
+    var url = 'http://www.omdbapi.com/?s=' + query + apikey;
+    request(url, function (err, response, body) {
         // turn the body string into a JSON (javascript object)
         var results = JSON.parse(body)
         if (!err && response.statusCode == 200) {
