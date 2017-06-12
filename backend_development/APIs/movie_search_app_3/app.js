@@ -11,11 +11,15 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// ROUTE CONFIG:
+// REDIRECT TO SEARCH ROUTE
 app.get('/', function (req, res) {
     res.redirect('/search')
 });
 
+// INDEX ROUTE - SEARCH
 app.get('/search', function (req, res) {
+
     res.render('search')
 });
 

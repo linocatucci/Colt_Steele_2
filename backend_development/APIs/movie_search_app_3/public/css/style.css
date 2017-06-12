@@ -72,3 +72,11 @@ body {
 .panel .header {
     margin: 5px 0;
 }
+
+.ui.button {
+    margin-top: 1.5em;
+}
+
+.ui .form {
+    margin-top: 1em;
+}
