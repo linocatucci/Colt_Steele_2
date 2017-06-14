@@ -59,24 +59,78 @@ var Movie = mongoose.model('Movie', movieSchema);
 
 // INDEX ROUTE + REDIRECT
 // redirect from home
+app.get('/', function (req, res) {
+    res.redirect('/movies')
+})
 
 // INDEX ROUTE
+app.get('/movies', function (req, res) {
+    Movie.find({}, function (err, allMovies) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render('index', {
+                movies: allMovies
+            })
+        }
+    });
+});
 
 // NEW ROUTE - show form to create new movie information
-
+app.get('/movies/new', function (req, res) {
+    res.render('new')
+})
 
 // CREATE ROUTE
-
+app.post('/movies', function (req, res) {
+    // create movie
+    Movie.create(req.body.movie, function (err, newMovie) {
+        if (err) {
+            res.render('new')
+        } else {
+            // then redirect to the index route                    
+            res.redirect('/movies')
+        }
+    });
+});
 
 // SHOW ROUTE
 // shows one particular MOVIE in details based on the ID
-
+app.get('/movies/:id', function (req, res) {
+    Movie.findById(req.params.id, function (err, foundMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.render('show', {
+                movie: foundMovie
+            })
+        }
+    });
+})
 
 // EDIT ROUTE (Show edit form for one MOVIE)
+app.get('/movies/:id/edit', function (req, res) {
+    Movie.findById(req.params.id, function (err, foundMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.render('edit', {
+                movie: foundMovie
+            })
+        }
+    })
+})
 
-
-// UPDATE ROUTE	/movies/:id	PUT
-
+// // UPDATE ROUTE	/movies/:id	PUT
+app.put('/movies/:id', function (req, res) {
+    Movie.findByIdAndUpdate(req.params.id, req.body.movie, function (err, updateMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.redirect('/movies/' + req.params.id);
+        }
+    })
+});
 
 // DESTROY ROUTE Destroy	/dogs/:id	DELETE	
 // Delete a particular dog, then redirect somewhere	Dog.findByIdAndRemove()
@@ -87,6 +141,6 @@ var Movie = mongoose.model('Movie', movieSchema);
 // });
 
 // APPLICATION LISTEN LOCAL
-app.listen('3001', function () {
+app.listen('3000', function () {
     console.log('Movie app 2 server has been started')
 });
