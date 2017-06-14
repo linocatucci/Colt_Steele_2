@@ -1,8 +1,15 @@
 // APP SETUP (REQUIRE)
+var express = require('express');
+var ejs = require('ejs')
+var app = express();
 
 
 // APP CONFIG (set and use)
-
+app.set('view engine', 'ejs')
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // ROUTE CONFIG:
 // INDEX TO SEARCH PAGE

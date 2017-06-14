@@ -1,7 +1,20 @@
 // Add requires
-
+var express = require('express');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var expressSanitizer = require('express-sanitizer');
+var app = express();
 
 // APP CONFIG
+mongoose.connect('mongodb://localhost/restful_movie_app');
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(methodOverride('_method'));
+app.use(expressSanitizer());
 
 // database schema
 /*
@@ -14,6 +27,24 @@ created (date)
 
 // MONGOOSE/MODEL CONFIG
 //for image you can also have a default image if one is not provided.
+// 1e create schema
+
+var movieSchema = new mongoose.Schema({
+    title: String,
+    image: {
+        type: String,
+        default: 'imdb-iphone.png'
+    },
+    actors: String,
+    body: String,
+    created: {
+        type: Date,
+        // `Date.now()` returns the current unix timestamp as a number
+        default: Date.now
+    }
+});
+
+var Movie = mongoose.model('Movie', movieSchema);
 
 // RESTFUL ROUTES
 
@@ -56,3 +87,6 @@ created (date)
 // });
 
 // APPLICATION LISTEN LOCAL
+app.listen('3001', function () {
+    console.log('Movie app 2 server has been started')
+});
