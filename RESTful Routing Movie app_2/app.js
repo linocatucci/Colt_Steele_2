@@ -103,10 +103,10 @@ app.get('/movies/:id', function (req, res) {
         } else {
             res.render('show', {
                 movie: foundMovie
-            })
+            });
         }
     });
-})
+});
 
 // EDIT ROUTE (Show edit form for one MOVIE)
 app.get('/movies/:id/edit', function (req, res) {
@@ -116,10 +116,10 @@ app.get('/movies/:id/edit', function (req, res) {
         } else {
             res.render('edit', {
                 movie: foundMovie
-            })
+            });
         }
-    })
-})
+    });
+});
 
 // // UPDATE ROUTE	/movies/:id	PUT
 app.put('/movies/:id', function (req, res) {
@@ -129,11 +129,20 @@ app.put('/movies/:id', function (req, res) {
         } else {
             res.redirect('/movies/' + req.params.id);
         }
-    })
+    });
 });
 
 // DESTROY ROUTE Destroy	/dogs/:id	DELETE	
 // Delete a particular dog, then redirect somewhere	Dog.findByIdAndRemove()
+app.delete('/movies/:id', function (req, res) {
+    Movie.findByIdAndRemove(req.params.id, function (err, updateMovie) {
+        if (err) {
+            res.redirect('/movies')
+        } else {
+            res.redirect('/movies')
+        }
+    })
+});
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
