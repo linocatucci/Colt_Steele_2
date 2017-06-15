@@ -34,8 +34,16 @@
 */
 //  start embedding data code here:
 var mongoose = require('mongoose');
+// to avoid the deprecated message
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/demo_blog');
+//  get notified if we connect successfully or if a connection error occurs:
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    // we're connected!
+    console.log('we are connected')
+});
 
 var postSchema = mongoose.Schema({
     title: String,
@@ -46,11 +54,12 @@ var Post = mongoose.model('Post', postSchema);
 
 var userSchema = mongoose.Schema({
     email: String,
-    name: String
+    name: String,
+    posts: [postSchema]
 });
 
 var User = mongoose.model('User', userSchema);
-
+// create new user
 // var newUser = new User({
 //     email: 'charlie@brown.com',
 //     name: 'Charlie Brown'
@@ -64,6 +73,7 @@ var User = mongoose.model('User', userSchema);
 //     }
 // });
 
+// create new post
 // var newPost = new Post({
 //     title: 'How to cook Italian',
 //     content: 'pizza, spaghetti, penne, vongole etc'
