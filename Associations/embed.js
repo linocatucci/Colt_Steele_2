@@ -20,7 +20,7 @@
 9. save the new post to the db, with newPost.save, the callback returns the error=err and the "data" = post
     console.log the data=post
 10. embed the posts into the user schema [postSchema]
-11. define the embedded schema first
+11. define the embedded schema of the post first
 12. create a new user again (hermoine of zo)
 13. push a new post in the new user newUser.posts.push({title:"ddddd",
                                                         content:"hdhdhddhdhdh"})
@@ -59,6 +59,7 @@ var userSchema = mongoose.Schema({
 });
 
 var User = mongoose.model('User', userSchema);
+
 // create new user
 // var newUser = new User({
 //     email: 'charlie@brown.com',
@@ -73,7 +74,7 @@ var User = mongoose.model('User', userSchema);
 //     }
 // });
 
-// create new post
+// // create new post
 // var newPost = new Post({
 //     title: 'How to cook Italian',
 //     content: 'pizza, spaghetti, penne, vongole etc'
@@ -86,3 +87,47 @@ var User = mongoose.model('User', userSchema);
 //         console.log(post)
 //     )
 // });
+// create a second new user
+// var newUser = new User({
+//     email: 'Lino@catucci.com',
+//     name: 'Lino Catucci'
+// })
+
+// newUser.save(function(err, user){
+//     if(err){
+//         console.log(err)
+//     } else {
+//         console.log(user)
+//     }
+// });
+
+// newUser.posts.push({title:"How to make club Sandwich", content:"chicken, avocado, chips, tomato"})
+// newUser.save(function(err, user){
+//     if(err){
+//         console.log(err)
+//     } else{
+//         console.log(user)
+//     }
+// });
+
+User.findOne({name:"Lino Catucci"}, function(err, user){
+    if(err){
+        console.log(err)
+    } else{
+        console.log('show the user who is found!')
+        console.log(user)
+    }
+    console.log('create another post for this user.')
+    user.posts.push({title:"how to bake a pizza",
+            content:"tomatos, dough, mozzarella"
+        });
+    user.save(function(err, user){
+        if(err){
+            console.log(err)
+        }else{
+            console.log(user)
+        }
+    })
+});
+
+ 
