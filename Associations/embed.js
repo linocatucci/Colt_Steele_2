@@ -29,7 +29,6 @@
     coming back=user))
 16. in the else, when we find the user, create another post (user.posts.push({}))
 17.  outside the else save the the new user again. user.save(functione(err, user)) with callback if / else
-18. 
 
 */
 //  start embedding data code here:
@@ -74,7 +73,7 @@ var User = mongoose.model('User', userSchema);
 //     }
 // });
 
-// // create new post
+// // // create new post
 // var newPost = new Post({
 //     title: 'How to cook Italian',
 //     content: 'pizza, spaghetti, penne, vongole etc'
@@ -87,47 +86,52 @@ var User = mongoose.model('User', userSchema);
 //         console.log(post)
 //     )
 // });
+
 // create a second new user
-// var newUser = new User({
-//     email: 'Lino@catucci.com',
-//     name: 'Lino Catucci'
-// })
+var newUser = new User({
+    email: 'Lino@catucci.com',
+    name: 'Lino Catucci'
+})
 
-// newUser.save(function(err, user){
-//     if(err){
-//         console.log(err)
-//     } else {
-//         console.log(user)
-//     }
-// });
-
-// newUser.posts.push({title:"How to make club Sandwich", content:"chicken, avocado, chips, tomato"})
-// newUser.save(function(err, user){
-//     if(err){
-//         console.log(err)
-//     } else{
-//         console.log(user)
-//     }
-// });
-
-User.findOne({name:"Lino Catucci"}, function(err, user){
-    if(err){
+newUser.save(function (err, user) {
+    if (err) {
         console.log(err)
-    } else{
+    } else {
+        console.log(user)
+    }
+});
+
+newUser.posts.push({
+    title: "How to make club Sandwich",
+    content: "chicken, avocado, chips, tomato"
+})
+newUser.save(function (err, user) {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log(user)
+    }
+});
+
+User.findOne({
+    name: "Lino Catucci"
+}, function (err, user) {
+    if (err) {
+        console.log(err)
+    } else {
         console.log('show the user who is found!')
         console.log(user)
     }
     console.log('create another post for this user.')
-    user.posts.push({title:"how to bake a pizza",
-            content:"tomatos, dough, mozzarella"
-        });
-    user.save(function(err, user){
-        if(err){
+    user.posts.push({
+        title: "how to bake a pizza",
+        content: "tomatos, dough, mozzarella"
+    });
+    user.save(function (err, user) {
+        if (err) {
             console.log(err)
-        }else{
+        } else {
             console.log(user)
         }
-    })
+    });
 });
-
- 
