@@ -107,3 +107,4 @@ Show            /campgrounds/:id        GET             show info about one spec
 Edit            /campground/:id/edit    GET             show edit form for one campground
 Update          /campground/:id         PUT             Update a particular campground, then redirect somewhere
 Destroy         /campground/:id         DELETE          Delete a particular campground, then redirect somewhere  
+

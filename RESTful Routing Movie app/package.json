@@ -1,0 +1,19 @@
+{
+  "name": "restfulmovieapp",
+  "version": "1.0.0",
+  "description": "##Introduction * Define REST and explain WHY it matters * List all 7 RESTful routes * Show example of RESTful routing in practice",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lino",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-sanitizer": "^1.0.2",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.5"
+  }
+}

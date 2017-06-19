@@ -1,0 +1,27 @@
+i.icon {
+    font-size: 1.5em;
+}
+
+.ui.inverted.menu {
+    background: rgba(19, 149, 236, 1);
+}
+
+.ui.header:first-child {
+    margin-top: -0.142857em;
+}
+
+.ui.text.container {
+    margin: 5em 0;
+}
+
+#delete_form {
+    display: inline-block;
+}
+
+.edit_submit_buttons {
+    margin-top: 1em;
+}
+
+.ui.basic.blue.button {
+    margin-top: 1em;
+}

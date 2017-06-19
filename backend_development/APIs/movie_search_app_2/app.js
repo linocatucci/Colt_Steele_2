@@ -1,8 +1,9 @@
 var express = require('express');
 var request = require('request');
 var app = express();
-
+var apikey = '&apikey=thewdb'
 app.set('view engine', 'ejs');
+
 
 app.get('/', function (req, res) {
     res.render('search');
@@ -10,7 +11,7 @@ app.get('/', function (req, res) {
 
 app.get('/results', function (req, res) {
     var query = req.query.searchtext;
-    var url = 'http://www.omdbapi.com/?s=' + query;
+    var url = 'http://www.omdbapi.com/?s=' + query + apikey;
     request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var data = JSON.parse(body);
@@ -30,6 +31,6 @@ app.get('/results', function (req, res) {
 // });
 
 // lokaal gebruiken
-app.listen('3000', function () {
+app.listen('3010', function () {
     console.log('Movie app has started!');
 })
