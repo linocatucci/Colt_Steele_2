@@ -1,19 +1,20 @@
-var express = require('express');
-var request = require('request');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var Campground = require('./models/campground')
-var app = express();
-app.set('view engine', 'ejs');
-// 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-// tell nodejs to use the public folder with js and css files.
-app.use(express.static('public'));
+/*
+1. require campgrounds and mongoose
+2. require the new comments model
+2. create an data array with 3 campgrounds
+2. create a function seedDB which removes the whole database
+3. in the seedDB unction populate the array data via a foreach lop
+4. create a comment for each one in the loop where you create one campground after console.log('added campgroud)
+    1. comment
+    2. author
 
-// create the database yelp_camp with the db connection 
-mongoose.connect('mongodb://localhost/yelp_camp');
+5. push the new create comment in the campground.comment.push(comment)
+6. save the campground
+7. conslole.log ('new created comment was added)
+. export the function via module.export =  seedDB;
+.
+*/
+ngoose.connect('mongodb://localhost/yelp_camp');
 //  get notified if we connect successfully or if a connection error occurs:
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
