@@ -13,5 +13,5 @@ var campgroundSchema = new mongoose.Schema({
 // 2 ways to export 1st:
 // var Campground = mongoose.model('Campground', campgroundSchema);
 // module.exports = Campground
-// 2nd
+// 2nd short variant
 module.exports = mongoose.model('Campground', campgroundSchema);
