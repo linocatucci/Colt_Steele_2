@@ -13,5 +13,4 @@
 7. conslole.log ('new created comment was added)
 . export the function via module.export =  seedDB;
 
-
 */
