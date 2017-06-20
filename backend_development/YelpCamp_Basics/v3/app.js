@@ -146,4 +146,4 @@ app.get('/campgrounds/:id', function(req, res) {
 // lokaal gebruiken
 app.listen('3000', function() {
     console.log('The YelpCamp Server has started!');
-})
+});

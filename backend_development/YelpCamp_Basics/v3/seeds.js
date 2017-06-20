@@ -67,36 +67,4 @@ function seedDB() {
     })
 }
 
-// function seedDB() {
-//     // remove all campgrounds
-//     Campground.remove({}, function(err, campground) {
-//         if (err) {
-//             console.log(err)
-//         } else {
-//             // add few campgrounds.
-//             data.forEach(function(campground) {
-//                 Campground.create(campground, function(err, newCampground) {
-//                     if (err) {
-//                         console.log(err)
-//                     } else {
-//                         // add comments to the campgrounds
-//                         var comment = [{
-//                             text: 'nice, but I want WiFi',
-//                             author: 'Lino Catucci'
-//                         }]
-//                         newCampground.comment.push(comment)
-//                         newCampground.save(function(err, data) {
-//                             if (err) {
-//                                 console.log(err)
-//                             } else {
-
-//                             }
-//                         })
-//                     }
-//                 })
-//             })
-//         }
-//     })
-// }
-
 module.exports = seedDB;
