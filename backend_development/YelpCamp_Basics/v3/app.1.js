@@ -3,7 +3,7 @@ var request = require('request');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Campground = require('./models/campground');
-var seedsDB = require('./seeds');
+var seedDB = require('./seeds');
 var app = express();
 app.set('view engine', 'ejs');
 // 
@@ -21,6 +21,8 @@ db.once('open', function() {
     // we're connected!
     console.log('We are connected to DB!')
 });
+
+seedDB();
 
 // Campground.create({
 //         name: 'Devils Peak',

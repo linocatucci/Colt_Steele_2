@@ -12,6 +12,10 @@ app.use(bodyParser.urlencoded({
 }));
 // tell nodejs to use the public folder with js and css files.
 app.use(express.static('public'));
+
+// remove and populate seed data
+seedsDB();
+
 // create the database yelp_camp with the db connection 
 mongoose.connect('mongodb://localhost/yelp_camp');
 //  get notified if we connect successfully or if a connection error occurs:
@@ -21,7 +25,7 @@ db.once('open', function() {
     // we're connected!
     console.log('We are connected to DB!')
 });
-seedsDB();
+
 // Campground.create({
 //         name: 'Devils Peak',
 //         image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg',
