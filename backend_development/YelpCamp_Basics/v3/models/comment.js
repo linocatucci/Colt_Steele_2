@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 // SCHEMA SETUP FOR YELP CAMP CAMPGROUNDS
 var commentSchema = new mongoose.Schema({
-    name: String,
-    description: String
+    text: String,
+    author: String
 
 });
 

@@ -21,7 +21,7 @@ db.once('open', function() {
     // we're connected!
     console.log('We are connected to DB!')
 });
-seedsDB();
+
 // Campground.create({
 //         name: 'Devils Peak',
 //         image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg',
