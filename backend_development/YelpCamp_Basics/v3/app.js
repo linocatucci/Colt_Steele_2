@@ -13,9 +13,6 @@ app.use(bodyParser.urlencoded({
 // tell nodejs to use the public folder with js and css files.
 app.use(express.static('public'));
 
-// remove and populate seed data
-seedsDB();
-
 // create the database yelp_camp with the db connection 
 mongoose.connect('mongodb://localhost/yelp_camp');
 //  get notified if we connect successfully or if a connection error occurs:
@@ -25,6 +22,9 @@ db.once('open', function() {
     // we're connected!
     console.log('We are connected to DB!')
 });
+
+// remove and populate seed data
+seedsDB();
 
 // Campground.create({
 //         name: 'Devils Peak',
@@ -125,12 +125,13 @@ app.get('/campgrounds/new', function(req, res) {
 app.get('/campgrounds/:id', function(req, res) {
     //find the campground with provided ID
     var campID = req.params.id;
-    Campground.findById(campID, function(err, foundCampground) {
+    Campground.findById(campID).populate('comments').exec(function(err, foundCampground) {
         if (err) {
             console.log(err)
         } else {
             // render the show campground template with that campground
             //render show template with that campground 
+            console.log(foundCampground);
             res.render('show', {
                 campground: foundCampground
             });

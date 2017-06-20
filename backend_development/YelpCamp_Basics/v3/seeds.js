@@ -24,29 +24,40 @@ var data = [{
         image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg',
         description: 'blah blah blah'
     }, {
-        name: 'Granite Hill',
-        image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg',
+        name: 'Devils Peak',
+        image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg',
         description: 'blah blah blah'
     },
     {
-        name: 'Granite Hill',
-        image: 'https://farm8.staticflickr.com/7259/7121858075_7375241459.jpg',
+        name: 'Mosquito Creek',
+        image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg',
         description: 'blah blah blah'
     }
 ];
 
+function removeComments() {
+    Comment.remove({}, function(err) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('Step 1: Removed all Comments!')
+        }
+    });
+}
+
 function seedDB() {
+    removeComments();
     Campground.remove({}, function(err) {
         if (err) {
             console.log(err)
         } else {
-            console.log('Removed all campgrounds');
+            console.log('Step 2: Removed all campgrounds');
             data.forEach(function(seed) {
                 Campground.create(seed, function(err, campground) {
                     if (err) {
                         console.log(err)
                     } else {
-                        console.log('Campgrounds are created.')
+                        console.log('Step 3: Campgrounds are created.')
                             // Create a comment
                         Comment.create({
                             text: 'nice, but I want WiFi',
@@ -57,7 +68,7 @@ function seedDB() {
                             } else {
                                 campground.comments.push(newComment);
                                 campground.save();
-                                console.log('Created new comment!')
+                                console.log('Step 4: Created new comment!')
                             }
                         });
                     }
