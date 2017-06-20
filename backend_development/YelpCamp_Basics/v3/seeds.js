@@ -36,18 +36,18 @@ var data = [{
 ];
 
 function seedDB() {
-    Campground.remove({}, function(err, campground) {
+    Campground.remove({}, function(err) {
         if (err) {
             console.log(err)
         } else {
             console.log('Removed all campgrounds');
-            data.forEach(function(campground) {
-                Campground.create(campground, function(err, newCampground) {
+            data.forEach(function(seed) {
+                Campground.create(seed, function(err, campground) {
                     if (err) {
                         console.log(err)
                     } else {
                         console.log('Campgrounds are created.')
-                            // add comments to the campgrounds
+                            // Create a comment
                         Comment.create({
                             text: 'nice, but I want WiFi',
                             author: 'Lino Catucci'
@@ -55,14 +55,9 @@ function seedDB() {
                             if (err) {
                                 console.log(err)
                             } else {
-                                newCampground.comment.push(comment);
-                                newCampground.save(function(err, data) {
-                                    if (err) {
-                                        console.log(err)
-                                    } else {
-                                        console.log('comment created!')
-                                    }
-                                });
+                                campground.comments.push(newComment);
+                                campground.save();
+                                console.log('Created new comment!')
                             }
                         });
                     }
