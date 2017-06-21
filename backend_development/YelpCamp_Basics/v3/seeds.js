@@ -46,11 +46,11 @@ function removeComments() {
 }
 
 function seedDB() {
-    removeComments();
     Campground.remove({}, function(err) {
         if (err) {
             console.log(err)
         } else {
+            removeComments();
             console.log('Step 2: Removed all campgrounds');
             data.forEach(function(seed) {
                 Campground.create(seed, function(err, campground) {

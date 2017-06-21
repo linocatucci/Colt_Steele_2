@@ -124,8 +124,8 @@ app.get('/campgrounds/new', function(req, res) {
 // always after the new otherwise new will be used as id
 app.get('/campgrounds/:id', function(req, res) {
     //find the campground with provided ID
-    var campID = req.params.id;
-    Campground.findById(campID).populate('comments').exec(function(err, foundCampground) {
+    var campId = req.params.id;
+    Campground.findById(campId).populate('comments').exec(function(err, foundCampground) {
         if (err) {
             console.log(err)
         } else {
