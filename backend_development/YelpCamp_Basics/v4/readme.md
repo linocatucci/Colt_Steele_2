@@ -56,6 +56,14 @@ Each Campground has:
 * create the comments and campgrounds view directory (views/comments ... campgrounds)
 * change the routes and the res.render() to the correct ejs file
 * Add the new comment form
+    - pass in the campground data with find campground by id 
+    - group the text and author with comment[text], comment[author]
+* post route
+    - lookup the campground using the ID
+    - create new comment
+    - connect new comment to campground (push)
+    - redirect campground show page
+* create a new button on the campgrounds/id page to ad a comment (redirect it to /comments/new)
 
 #Style Show Page
 * Add sidebar to show page

@@ -139,6 +139,14 @@ app.get('/campgrounds/:id', function(req, res) {
     });
 });
 
+// ==============================
+// COMMENTS ROUTES
+// ==============================
+
+app.get('/campgrounds/:id/comment/new', function(req, res) {
+    res.render('This is the comment new route!')
+})
+
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
 //     console.log('Server has started for Express ESJ Assignment!')
