@@ -128,6 +128,7 @@ app.get('/campgrounds/new', function(req, res) {
 app.get('/campgrounds/:id', function(req, res) {
     //find the campground with provided ID
     var campId = req.params.id;
+    // find Campgrounds find all posts for that campgrounds and populate them to the array
     Campground.findById(campId).populate('comments').exec(function(err, foundCampground) {
         if (err) {
             console.log(err)
