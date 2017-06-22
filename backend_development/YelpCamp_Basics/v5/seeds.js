@@ -22,16 +22,16 @@ var Comment = require('./models/comment');
 var data = [{
         name: 'Granite Hill',
         image: 'https://farm3.staticflickr.com/2923/13950231147_7032e443a0.jpg',
-        description: 'blah blah blah'
+        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate '
     }, {
         name: 'Devils Peak',
         image: 'https://farm9.staticflickr.com/8673/15989950903_8185ed97c3.jpg',
-        description: 'blah blah blah'
+        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate '
     },
     {
         name: 'Mosquito Creek',
         image: 'https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg',
-        description: 'blah blah blah'
+        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate '
     }
 ];
 

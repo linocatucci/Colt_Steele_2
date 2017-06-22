@@ -12,7 +12,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 // tell nodejs to use the public folder with js and css files.
-app.use(express.static('public'));
+// old style to use the public directory
+// app.use(express.static('public'));
+// __dirname is the directory where the app.js application is started from
+app.use(express.static(__dirname + '/public'));
+console.log(__dirname);
 // to avoid the deprecated message 
 mongoose.Promise = global.Promise;
 
