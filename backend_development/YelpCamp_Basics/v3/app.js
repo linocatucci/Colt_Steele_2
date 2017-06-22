@@ -2,7 +2,8 @@ var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var Campground = require('./models/campground')
+var Campground = require('./models/campground');
+var seedsDB = require('./seeds');
 var app = express();
 app.set('view engine', 'ejs');
 // 
@@ -21,6 +22,9 @@ db.once('open', function() {
     // we're connected!
     console.log('We are connected to DB!')
 });
+
+// remove and populate seed data
+seedsDB();
 
 // Campground.create({
 //         name: 'Devils Peak',
@@ -120,19 +124,28 @@ app.get('/campgrounds/new', function(req, res) {
 // always after the new otherwise new will be used as id
 app.get('/campgrounds/:id', function(req, res) {
     //find the campground with provided ID
-    var campID = req.params.id;
-    Campground.findById(campID, function(err, foundCampground) {
+    var campId = req.params.id;
+    Campground.findById(campId).populate('comments').exec(function(err, foundCampground) {
         if (err) {
             console.log(err)
         } else {
             // render the show campground template with that campground
             //render show template with that campground 
+            console.log(foundCampground);
             res.render('show', {
                 campground: foundCampground
             });
         }
     });
 });
+
+// ==============================
+// COMMENTS ROUTES
+// ==============================
+
+app.get('/campgrounds/:id/comment/new', function(req, res) {
+    res.render('This is the comment new route!')
+})
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
@@ -142,4 +155,4 @@ app.get('/campgrounds/:id', function(req, res) {
 // lokaal gebruiken
 app.listen('3000', function() {
     console.log('The YelpCamp Server has started!');
-})
+});
