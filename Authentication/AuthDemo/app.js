@@ -12,11 +12,13 @@ app.set('view engine', 'ejs');
 
 app.use(require('express-session')({
     secret: 'Julia is mijn dochter',
+    // expire session 
+    cookie: { _expires: 6000000 }, // time im ms
     resave: false,
     saveUninitialized: false
 }));
 
-
+passport.use(new LocalStrategy(User.authenticate()));
 // encoding the data, serialize the data and putting it back in the session (serialize it)
 // reading the session, taking the data from the session, unencoding it (deserialize) it
 passport.serializeUser(User.serializeUser());
@@ -49,17 +51,24 @@ app.get('/', function(req, res) {
     res.render('home')
 });
 
-app.get('/secret', function(req, res) {
+// isLoggedIn is a middleware
+app.get('/secret', isLoggedIn, function(req, res) {
     res.render('secret')
 });
 
+//========================
 // AUTH ROUTES
 // show register form
+//========================
+
 app.get('/register', function(req, res) {
     res.render('register')
 });
 
-// handling user sign up
+
+// handling user sign up / registration
+//========================
+
 app.post('/register', function(req, res) {
     req.body.username;
     req.body.password;
@@ -70,7 +79,7 @@ app.post('/register', function(req, res) {
             // use the return to short circuit the flow. Immediatly bail out of the flow.
             return res.redirect('/register');
         } else {
-            // runs the serialize method (passport.serializeUser(User.serializeUser());)
+            // runs the serialize method (passport.serializeUser(User.serializeUser()
             // use local strategy
             passport.authenticate('local')(req, res, function() {
                 res.redirect('/secret');
@@ -78,6 +87,39 @@ app.post('/register', function(req, res) {
         }
     });
 });
+
+
+// LOGIN IN ROUTES 
+// handling user login form
+//========================
+app.get('/login', function(req, res) {
+    res.render('login');
+});
+
+// login logic submit form
+// middleware = , passport.authenticate
+//========================
+app.post('/login', passport.authenticate('local', {
+        successRedirect: '/secret',
+        failureRedirect: '/login'
+    }),
+    function(req, res) {
+
+    });
+
+// LOGOUT IN ROUTES 
+// handling user login form
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login')
+}
 
 app.listen('3000', function() {
     console.log('Authentication app has started!');
