@@ -108,3 +108,5 @@ Edit            /campground/:id/edit    GET             show edit form for one c
 Update          /campground/:id         PUT             Update a particular campground, then redirect somewhere
 Destroy         /campground/:id         DELETE          Delete a particular campground, then redirect somewhere  
 
+
+

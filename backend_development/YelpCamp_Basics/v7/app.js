@@ -9,6 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var User = require('./models/user');
 var app = express();
+
 app.set('view engine', 'ejs');
 // 
 app.use(bodyParser.urlencoded({

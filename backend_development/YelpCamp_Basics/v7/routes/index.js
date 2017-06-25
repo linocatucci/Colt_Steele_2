@@ -1,5 +1,6 @@
 // ==============================
 // AUTH ROUTES
+// all purpose routes
 // ==============================
 
 // OWN MIDDLEWARE FUNCTIONS!!

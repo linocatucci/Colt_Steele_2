@@ -95,6 +95,21 @@ Each Campground has:
 ##Auth Pt. 5 - Show/Hide Links
 * Show/hide auth links in navbar correctly
 
+##Refactoring the YelpCamp application and routes
+1. split the routes in a specific  directory and own file
+    - copy paste the code from app.js
+    - use the var router = express.Router() in the files
+2. require the route files in each other
+    - export the router variabel with : module.exports = router;
+3. change all routes app. to router.
+4. in app.js. require the 3 files (camp, comm, indx) in the app.js file to the right location
+5. in the app.js we need to tell that the app is going to use the 3 file (set in step 4): app.use(commentRoutes), (campgroundRoutes) etc.
+6. In the comments file, you need to require campgrounds and comments, in the campgrounds file you need to do that too
+7. check jslint error where some are not declared
+8. dry up the come by shortening the route name. Appending the text /campgrounds/:id etc.
+9. In the req.params.id of the campground is not passed thru the comments file. You can use var router = express.Router({mergeParams: true})
+
+
 RESTFUL ROUTES
 
 name      url      verb    desc.
