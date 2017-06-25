@@ -77,12 +77,12 @@ seedsDB();
 // }];
 
 // PASSPORT CONFIGURATION
-// configure session
+// configure session for the user
 app.use(require('express-session')({
     secret: 'Julia is de allerliefste!',
     resave: false,
     saveUninitialized: false,
-    cookie: { _expires: 180000 } // time im ms
+    cookie: { _expires: 180000 } // time im ms == 3 minutes
 }));
 // PASSPORT CONFIGURATION
 app.use(passport.initialize());
@@ -93,16 +93,27 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// TEST
-var myLogger = function(req, res, next) {
-    console.log('LOGGED')
-    next()
-}
+// OWN MIDDLEWARE FUNCTIONS!!
 
-app.use(myLogger)
+// isLoggedIn is a middleware to check if somebody is logged in 
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+// MIDDLEWARE ON THE APPLICATION WHICH PASSES THE currentUser to be used on every route!
+app.use(function(req, res, next) {
+    // whatever we put in res.locals can be used in our templates
+    res.locals.currentUser = req.user;
+    // you need to have next otherwise it will stop. And it needs to move to the rest of the code in 
+    // the route!
+    next();
+});
 
 //INDEX - return to home page
 app.get('/', function(req, res) {
+    var currentUser = req.user;
     console.log('This will be the landing page soon!');
     res.render('landing');
 });
@@ -110,6 +121,7 @@ app.get('/', function(req, res) {
 //INDEX - show all campgrounds
 app.get('/campgrounds', function(req, res) {
     console.log('Camground page!');
+    console.log(req.user);
     // get all the campgrounds from the DB!
     Campground.find({}, function(err, allCampgrounds) {
             if (err) {
@@ -126,7 +138,7 @@ app.get('/campgrounds', function(req, res) {
 // convention to have the post method (add campgrounds) the same name as get the campgrounds
 
 //CREATE - add new campground to DB
-app.post('/campgrounds', function(req, res) {
+app.post('/campgrounds', isLoggedIn, function(req, res) {
         // res.send('post werkt.')
         // get data from form
         var name = req.body.name;
@@ -151,7 +163,7 @@ app.post('/campgrounds', function(req, res) {
     // this is the form to add a new campground.
 
 //NEW - show form to create new campground
-app.get('/campgrounds/new', function(req, res) {
+app.get('/campgrounds/new', isLoggedIn, function(req, res) {
     res.render('campgrounds/new');
 })
 
@@ -180,7 +192,7 @@ app.get('/campgrounds/:id', function(req, res) {
 // ==============================
 
 // NEW COMMENTS ROUTE
-app.get('/campgrounds/:id/comments/new', function(req, res) {
+app.get('/campgrounds/:id/comments/new', isLoggedIn, function(req, res) {
     Campground.findById(req.params.id, function(err, campground) {
         if (err) {
             console.log(err)
@@ -191,7 +203,8 @@ app.get('/campgrounds/:id/comments/new', function(req, res) {
 });
 
 // CREATE - add new COMMENT TO CAMPGROUND
-app.post('/campgrounds/:id/comments', function(req, res) {
+// isLoggedIn is a middleware to check if somebody is logged in 
+app.post('/campgrounds/:id/comments', isLoggedIn, function(req, res) {
     // lookup the campground using the ID
     Campground.findById(req.params.id, function(err, foundCampground) {
         if (err) {
@@ -222,6 +235,8 @@ app.post('/campgrounds/:id/comments', function(req, res) {
 app.get('/register', function(req, res) {
     res.render('register')
 });
+
+// register / create the user and authenticate the user
 app.post('/register', function(req, res) {
     var newUser = new User({ username: req.body.username });
     User.register(newUser, req.body.password, function(err, user) {
@@ -235,6 +250,33 @@ app.post('/register', function(req, res) {
     })
 });
 
+// show the login form 
+app.get('/login', function(req, res) {
+    res.render('login')
+});
+
+// handeliing login logicactual login route
+// this is done via a middleware, in this case the passport.authenticate('local')
+// app.post('login', middleware, callback) then,
+// the passport.authenticate method is called which is: 
+// passport.use(new LocalStrategy(User.authenticate()));
+// it will use the req.body.username and req.body.password and authenticate with DB
+app.post('/login', passport.authenticate('local',
+
+    {
+        successRedirect: '/campgrounds',
+        failureRedirect: '/login'
+    }
+
+), function(req, res) {
+
+});
+
+// LOGOUT
+app.get('/logout', function(req, res) {
+    req.logOut();
+    res.redirect('/campgrounds');
+});
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
