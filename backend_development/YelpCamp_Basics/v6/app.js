@@ -93,6 +93,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// TEST
+var myLogger = function(req, res, next) {
+    console.log('LOGGED')
+    next()
+}
+
+app.use(myLogger)
+
 //INDEX - return to home page
 app.get('/', function(req, res) {
     console.log('This will be the landing page soon!');
@@ -226,6 +234,7 @@ app.post('/register', function(req, res) {
         });
     })
 });
+
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded
 // app.listen(process.env.PORT, process.env.IP, function () {
