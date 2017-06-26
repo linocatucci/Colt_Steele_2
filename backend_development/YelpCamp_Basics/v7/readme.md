@@ -99,7 +99,7 @@ Each Campground has:
 1. split the routes in a specific  directory and own file
     - copy paste the code from app.js
     - use the var router = express.Router() in the files
-2. require the route files in each other
+2. require the models files in each other route files
     - export the router variabel with : module.exports = router;
 3. change all routes app. to router.
 4. in app.js. require the 3 files (camp, comm, indx) in the app.js file to the right location
