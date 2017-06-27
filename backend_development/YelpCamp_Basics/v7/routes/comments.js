@@ -2,13 +2,17 @@
 // COMMENTS ROUTES
 // ==============================
 var express = require('express');
-var router = express.Router();
+// mergeParams zorgt ervoor dat de params uit de compground wordt doorgegeven naar de comments file.
+var router = express.Router({
+    mergeParams: true
+});
 var Campground = require('../models/campground');
 var Comment = require('../models/comment');
 
 
 // NEW COMMENTS ROUTE
-router.get('/campgrounds/:id/comments/new', isLoggedIn, function (req, res) {
+// /campgrounds/:id/comments
+router.get('/new', isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err)
@@ -22,7 +26,8 @@ router.get('/campgrounds/:id/comments/new', isLoggedIn, function (req, res) {
 
 // CREATE - add new COMMENT TO CAMPGROUND
 // isLoggedIn is a middleware to check if somebody is logged in 
-router.post('/campgrounds/:id/comments', isLoggedIn, function (req, res) {
+// /campgrounds/:id/comments
+router.post('/', isLoggedIn, function (req, res) {
     // lookup the campground using the ID
     Campground.findById(req.params.id, function (err, foundCampground) {
         if (err) {
@@ -52,4 +57,4 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
-module.exportsd = router;
+module.exports = router;

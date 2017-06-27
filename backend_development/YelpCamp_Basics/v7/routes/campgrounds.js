@@ -6,7 +6,7 @@ var router = express.Router();
 var Campground = require('../models/campground');
 
 //INDEX - show all campgrounds
-router.get('/campgrounds', function (req, res) {
+router.get('/', function (req, res) {
     console.log('Camground page!');
     console.log(req.user);
     // get all the campgrounds from the DB!
@@ -25,7 +25,7 @@ router.get('/campgrounds', function (req, res) {
 // convention to have the post method (add campgrounds) the same name as get the campgrounds
 
 //CREATE - add new campground to DB
-router.post('/campgrounds', isLoggedIn, function (req, res) {
+router.post('/', isLoggedIn, function (req, res) {
     // res.send('post werkt.')
     // get data from form
     var name = req.body.name;
@@ -50,13 +50,13 @@ router.post('/campgrounds', isLoggedIn, function (req, res) {
 // this is the form to add a new campground.
 
 //NEW - show form to create new campground
-router.get('/campgrounds/new', isLoggedIn, function (req, res) {
+router.get('/new', isLoggedIn, function (req, res) {
     res.render('campgrounds/new');
 })
 
 // SHOW - shows more info about one campground
 // always after the new otherwise new will be used as id
-router.get('/campgrounds/:id', function (req, res) {
+router.get('/:id', function (req, res) {
     //find the campground with provided ID
     var campId = req.params.id;
     // find Campgrounds find all posts for that campgrounds and populate them to the array

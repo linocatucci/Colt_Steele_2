@@ -88,7 +88,7 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        _expires: 180000
+        _expires: 360000
     } // time im ms == 3 minutes
 }));
 // PASSPORT CONFIGURATION
@@ -109,9 +109,15 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+// app.use("/campgrounds",campgroundRoutes);
+// The code above means "mount the routes from campgroundRoutes(required at top of app.js) 
+// to the /campgrounds route. 
+// So any of the routes inside of campgroundRoutes will be prefixed with /campgrounds.
+
 // use the route files we just have required
-app.use(campgroundRoutes);
-app.use(commentRoutes);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/comments', commentRoutes);
 app.use(indexRoutes);
 
 // // bij cloud 9 met je dit gebruiken, dit is geen hardcoded

@@ -107,7 +107,7 @@ Each Campground has:
 6. In the comments file, you need to require campgrounds and comments, in the campgrounds file you need to do that too
 7. check jslint error where some are not declared
 8. dry up the come by shortening the route name. Appending the text /campgrounds/:id etc.
-9. In the req.params.id of the campground is not passed thru the comments file. You can use var router = express.Router({mergeParams: true})
+9. The req.params.id of the campground is not passed thru the comments file. You can use var router = express.Router({mergeParams: true})
 
 
 RESTFUL ROUTES
