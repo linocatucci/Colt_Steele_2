@@ -8,7 +8,6 @@ var Campground = require('../models/campground');
 //INDEX - show all campgrounds
 router.get('/', function (req, res) {
     console.log('Camground page!');
-    console.log(req.user);
     // get all the campgrounds from the DB!
     Campground.find({}, function (err, allCampgrounds) {
         if (err) {
@@ -31,16 +30,28 @@ router.post('/', isLoggedIn, function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
     var newCampground = {
         name: name,
         image: image,
-        description: description
+        description: description,
+        author: author
     }
+    // add username to the new created campground
+    // console.log('###########' + req.user);
+    // newCampground.author.id = req.user._id;
+    // newCampground.author.username = req.user.username;
+    console.log('this is the new campground ' + newCampground);
+    // newCampground.save();
     // add to campground array
     Campground.create(newCampground, function (err, newCreatedCampground) {
         if (err) {
             console.log(err)
         } else {
+            // console.log('*********** ' + newCreatedCampground)
             // redirect to campgrounds page
             res.redirect('/campgrounds')
         }

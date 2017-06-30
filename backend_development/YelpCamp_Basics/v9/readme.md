@@ -95,6 +95,9 @@ Each Campground has:
 ##Auth Pt. 5 - Show/Hide Links
 * Show/hide auth links in navbar correctly
 
+##Refactor The Routes
+* Use Express router to reoragnize all routes
+
 ##Refactoring the YelpCamp application and routes
 1. split the routes in a specific  directory and own file
     - copy paste the code from app.js
@@ -123,6 +126,11 @@ author :
 2. In de comment route, new comment, moet je het user id en username saven en connecten aan author.id en username aan req.user.username, req.user._id
  
 3. in het form, create comment kun je de author field weghalen. Of kijken of je via de readonly property en de value kan zetten naar req.user.username
+
+
+##Users + Campgrounds
+* Prevent an unauthenticated user from creating a campground
+* Save username+id to newly created campground
 
 
 RESTFUL ROUTES
