@@ -10,7 +10,7 @@ var Campground = require('../models/campground');
 var Comment = require('../models/comment');
 
 
-// NEW COMMENTS ROUTE
+// COMMENTS NEW ROUTE
 // /campgrounds/:id/comments
 router.get('/new', isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, function (err, campground) {
@@ -24,7 +24,7 @@ router.get('/new', isLoggedIn, function (req, res) {
     });
 });
 
-// CREATE - add new COMMENT TO CAMPGROUND
+// COMMENTS CREATE - add new COMMENT TO CAMPGROUND
 // isLoggedIn is a middleware to check if somebody is logged in 
 // /campgrounds/:id/comments
 router.post('/', isLoggedIn, function (req, res) {
