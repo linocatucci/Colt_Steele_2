@@ -30,20 +30,15 @@ router.post('/', isLoggedIn, function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
     var newCampground = {
         name: name,
         image: image,
-        description: description,
-        author: author
+        description: description
     }
     // add username to the new created campground
     // console.log('###########' + req.user);
-    // newCampground.author.id = req.user._id;
-    // newCampground.author.username = req.user.username;
+    newCampground.author.id = req.user._id;
+    newCampground.author.username = req.user.username;
     console.log('this is the new campground ' + newCampground);
     // newCampground.save();
     // add to campground array
