@@ -25,22 +25,17 @@
                         <p>
                             <em> Submitted By:  <%= campground.author.username %></em>
                         </p>
-                        <p>
-                            <% if (currentUser && currentUser.username === campground.author.username ){ %>
-                                <div class='text-left'>
-                                    <a class='btn btn-warning' href='/campgrounds/<%= campground._id %>/edit'>Edit</a>
-                                </div>
-                                <% } %>
-                        </p>
-                        <p>
-                            <% if (currentUser && currentUser.username === campground.author.username ){ %>
-                                <form action='/campgrounds/<%=campground._id %>?_method=DELETE' method='POST'>
-                                    <div class='text-left'>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </div>
-                                </form>
-                                <% } %>
-                        </p>
+                        <% if (currentUser && currentUser.username === campground.author.username ){ %>
+                            <a class='btn btn-warning text-left' href='/campgrounds/<%= campground._id %>/edit'>Edit</a>
+                            <% } %>
+
+                                <% if (currentUser && currentUser.username === campground.author.username ){ %>
+                                    <form action='/campgrounds/<%=campground._id %>?_method=DELETE' method='POST' id='delete_form'>
+                                        <div class='text-left' id='delete_form'>
+                                            <button class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </form>
+                                    <% } %>
                     </div>
                 </div>
                 <div class='well'>

@@ -143,4 +143,20 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
+function canDelete(req, res, next) {
+    // if user is the creator of the campground then it can deletes the campground
+    // else it should show an error / flash message
+    Campground.findById(req.params.id, function (err, foundCampground) {
+        if (err) {
+         console.log(err)
+        } else if(req.isAuthenticated() && req.user.username === foundCampground.author.username) {
+               next();
+        } else {
+            // flash message
+            console.log('you are not logged or you are not the owner!')
+            res.redirect('/login');
+        }
+    });
+};
+
 module.exports = router;
