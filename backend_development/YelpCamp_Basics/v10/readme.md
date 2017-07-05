@@ -122,9 +122,8 @@ Comment Edit Route:   <!--/campgrounds/:id/comments/:comment_id/edit-->
 * Add Destroy route
 * Add Delete button
 
-Campground Destroy Route: /campgrounds/:id
-Comment Destroy Route:    /campgrounds/:id/comments/:comment_id
-
+Campground Destroy Route: <!-- /campgrounds/:id -->
+Comment Destroy Route:    <!-- /campgrounds/:id/comments/:comment_id -->
 
 AUTHENTICATION = ARE YOU THE PERSON WHO SAY YOU ARE
 AUTHORIZATION = WHAT THEY ARE ALLOWED TO DO, PERMISSIONS!

@@ -80,20 +80,37 @@ router.get('/:comment_id/edit', function (req, res) {
 
 // Update the comments
 // '/campgrounds/:id/comments'
-// router.put('/:comment_id/', function (req, res) {
-//     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (err, updateComment) {
-//         if (err) {
-//             console.log(err);
-//             res.redirect('/campgrounds/' + req.params.id);
-//         } else {
-//             res.redirect('/campgrounds/' + req.params.id);
-//         }
-//     });
-// });
+// findByIdAndUpdate takes 3 inputs:
+// 1. the search criteria, mostly like an id, 
+// 2. the data to update and the
+// 3. call back
+router.put('/:comment_id/', function (req, res) {
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (err, updateComment) {
+        if (err) {
+            console.log(err);
+            res.redirect('/campgrounds/' + req.params.id);
+        } else {
+            res.redirect('/campgrounds/' + req.params.id);
+        }
+    });
+});
 
 // simple test update route
-router.put('/:comment_id/', function (req, res) {
-    res.send('you hit the update comment route!')
+// '/campgrounds/:id/comments'
+// router.put('/:comment_id/', function (req, res) {
+//     res.send('you hit the update comment route!');
+// });
+
+router.delete('/:comment_id/', function (req, res) {
+    Comment.findByIdAndRemove(req.params.comment_id, function (err) {
+        if (err) {
+            console.log(err);
+            res.redirect('back')
+        } else {
+            // res.redirect('/campgrounds/' + req.params.id);
+            res.redirect('back');
+        }
+    });
 });
 
 function isLoggedIn(req, res, next) {
@@ -102,5 +119,4 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect('/login');
 }
-
 module.exports = router;

@@ -46,7 +46,8 @@
                     <hr>
                     <% campground.comments.forEach(function(comment){ %>
                         <div class='row'>
-                            <div class='col-md-12'>
+                            <div class='col-md-12' id='show_comment_block'>
+                                <hr>
                                 <strong> <%= comment.author.username %></strong>
                                 <span class='pull-right'>10 days ago</span>
                                 <p>
