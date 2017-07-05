@@ -125,6 +125,10 @@ Comment Edit Route:   <!--/campgrounds/:id/comments/:comment_id/edit-->
 Campground Destroy Route: /campgrounds/:id
 Comment Destroy Route:    /campgrounds/:id/comments/:comment_id
 
+
+AUTHENTICATION = ARE YOU THE PERSON WHO SAY YOU ARE
+AUTHORIZATION = WHAT THEY ARE ALLOWED TO DO, PERMISSIONS!
+
 #Authorization Part 2: Comments
 * User can only edit his/her comments
 * User can only delete his/her comments

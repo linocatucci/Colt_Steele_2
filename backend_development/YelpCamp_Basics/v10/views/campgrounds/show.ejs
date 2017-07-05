@@ -36,6 +36,7 @@
                                         </div>
                                     </form>
                                     <% } %>
+
                     </div>
                 </div>
                 <div class='well'>
@@ -51,6 +52,12 @@
                                 <p>
                                     <%= comment.text %>
                                 </p>
+                                <a class='btn btn-warning text-left' href='/campgrounds/<%= campground._id %>/comments/<%=comment._id%>/edit'>Edit</a>
+                                <form action='/campgrounds/<%= campground._id %>/comments/<%=comment._id%>?_method=DELETE' method='POST' id='delete_form'>
+                                    <div class='text-left' id='delete_form'>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <% }) %>

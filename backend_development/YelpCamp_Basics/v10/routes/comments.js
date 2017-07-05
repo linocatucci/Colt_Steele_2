@@ -55,6 +55,47 @@ router.post('/', isLoggedIn, function (req, res) {
     });
 });
 
+// EDIT -- /comments/:id/edit	GET	Show edit form for one comment	
+// pre-defined in for the route:  '/campgrounds/:id/comments'
+// Comments.findById()
+
+router.get('/:comment_id/edit', function (req, res) {
+    // you will have 2 parameters:
+    // req.params.id = campground id
+    // req.params.comment_id = comment id
+    Comment.findById(req.params.comment_id, function (err, foundComment) {
+        if (err) {
+            console.log(err)
+            res.redirect('back');
+        } else {
+            console.log(req.user);
+            // res.locals.currentUser = req.user;
+            res.render('comments/edit', {
+                comment: foundComment,
+                campground_id: req.params.id
+            });
+        }
+    });
+});
+
+// Update the comments
+// '/campgrounds/:id/comments'
+// router.put('/:comment_id/', function (req, res) {
+//     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (err, updateComment) {
+//         if (err) {
+//             console.log(err);
+//             res.redirect('/campgrounds/' + req.params.id);
+//         } else {
+//             res.redirect('/campgrounds/' + req.params.id);
+//         }
+//     });
+// });
+
+// simple test update route
+router.put('/:comment_id/', function (req, res) {
+    res.send('you hit the update comment route!')
+});
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
