@@ -8,11 +8,12 @@ var router = express.Router({
 });
 var Campground = require('../models/campground');
 var Comment = require('../models/comment');
+var middleware = require('../middleware'); //index.js is de default file where express is looking for
 
 
 // COMMENTS NEW ROUTE
 // /campgrounds/:id/comments
-router.get('/new', isLoggedIn, function (req, res) {
+router.get('/new', middleware.isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err)
@@ -27,7 +28,7 @@ router.get('/new', isLoggedIn, function (req, res) {
 // COMMENTS CREATE - add new COMMENT TO CAMPGROUND
 // isLoggedIn is a middleware to check if somebody is logged in 
 // /campgrounds/:id/comments
-router.post('/', isLoggedIn, function (req, res) {
+router.post('/', middleware.isLoggedIn, function (req, res) {
     // lookup the campground using the ID
     Campground.findById(req.params.id, function (err, foundCampground) {
         if (err) {
@@ -59,7 +60,28 @@ router.post('/', isLoggedIn, function (req, res) {
 // pre-defined in for the route:  '/campgrounds/:id/comments'
 // Comments.findById()
 
-router.get('/:comment_id/edit', function (req, res) {
+// router.get('/:comment_id/edit', function (req, res) {
+//     // you will have 2 parameters:
+//     // req.params.id = campground id
+//     // req.params.comment_id = comment id
+//     // //checkCommentOwnerShip
+//     Comment.findById(req.params.comment_id, function (err, foundComment) {
+//         if (err) {
+//             console.log(err);
+//             res.redirect('back');
+//         } else {
+//             //console.log(req.user);
+//             // res.locals.currentUser = req.user;
+//             res.render('comments/edit', {
+//                 campground_id: req.params.id,
+//                 comment: foundComment
+//             });
+//         }
+//     });
+// });
+
+// COMMENT EDIT ROUTE
+router.get('/:comment_id/edit', middleware.checkCommentOwnerShip, function (req, res) {
     // you will have 2 parameters:
     // req.params.id = campground id
     // req.params.comment_id = comment id
@@ -78,13 +100,14 @@ router.get('/:comment_id/edit', function (req, res) {
     });
 });
 
+
 // Update the comments
 // '/campgrounds/:id/comments'
 // findByIdAndUpdate takes 3 inputs:
 // 1. the search criteria, mostly like an id, 
 // 2. the data to update and the
 // 3. call back
-router.put('/:comment_id/', function (req, res) {
+router.put('/:comment_id/', middleware.checkCommentOwnerShip, function (req, res) {
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (err, updateComment) {
         if (err) {
             console.log(err);
@@ -101,7 +124,7 @@ router.put('/:comment_id/', function (req, res) {
 //     res.send('you hit the update comment route!');
 // });
 
-router.delete('/:comment_id/', function (req, res) {
+router.delete('/:comment_id/', middleware.checkCommentOwnerShip, function (req, res) {
     Comment.findByIdAndRemove(req.params.comment_id, function (err) {
         if (err) {
             console.log(err);
@@ -113,10 +136,4 @@ router.delete('/:comment_id/', function (req, res) {
     });
 });
 
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}
 module.exports = router;
