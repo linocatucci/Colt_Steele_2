@@ -29,6 +29,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
     // res.send('post werkt.')
     // get data from form
     var name = req.body.name;
+    var price = req.body.price;
     var image = req.body.image;
     var description = req.body.description;
     // create a new object with username and id and add this to the newCampground object.
@@ -38,6 +39,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
     }
     var newCampground = {
         name: name,
+        price: price,
         image: image,
         description: description,
         author: author

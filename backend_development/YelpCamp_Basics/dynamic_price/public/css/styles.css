@@ -20,6 +20,11 @@
     display: inline;
 }
 
+.glyphicon {
+    margin-right: 25px;
+    top: 7px;
+}
+
 
 /*
 #show_comment_block {
