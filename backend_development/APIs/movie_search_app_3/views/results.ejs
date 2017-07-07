@@ -1,0 +1,25 @@
+<% include partials/header %>
+   <div class="ui main text container">
+   	<div class="ui huge header">Movie Results</div>
+    <div class="ui top attached segment">
+<div class="ui divided items">
+	<% data.Search.forEach(function(movie){ %>
+	 <div class="item">
+	    <div class="image">
+	      <img src="<%= movie.Poster %>">
+	    </div>
+	    <div class="content">
+	      <a class="header"><%= movie.Title %></a>
+	      <div class="extra">
+	        <a href="http://www.imdb.com/title/<%=movie.imdbID %>">
+                <button class="ui blue basic button">Read More</button>
+	        </a>
+	      </div>
+	    </div>
+	  </div>
+	<% }); %>
+</div>
+</div>
+    <a href="/">Search again</a>
+  </div>
+<% include partials/footer %>

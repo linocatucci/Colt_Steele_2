@@ -30,7 +30,8 @@ app.get('/repeat/:word/:number', function (req, res) {
     var subredditWord = req.params.word;
     var subredditNumber = parseInt(req.params.number);
     var outputword = [];
-    console.log(req.params)
+    //console.log(req.params)
+    console.log(req)
     // console.log(subredditWord);
     // console.log(subredditNumber);
 

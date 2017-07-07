@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+
+<main class="ui page grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui message main">
+                    <h1 class="ui header centered">Search for your favorite movie!</h1>
+                    <form action="/results" method="GET" class='ui form'>
+                        <div class="field">
+                            <input type="text" name="search" placeholder="search for movie">
+                        </div>
+                        <button type="submit" class="ui blue button centered" id="search_button">Go and Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</main>
+
+
+
+<% include partials/footer %>

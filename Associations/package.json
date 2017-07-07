@@ -1,0 +1,14 @@
+{
+  "name": "associations",
+  "version": "1.0.0",
+  "description": "data associations",
+  "main": "embed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lino",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^4.10.6"
+  }
+}

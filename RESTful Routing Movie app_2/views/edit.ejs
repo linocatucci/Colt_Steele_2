@@ -1,0 +1,26 @@
+<% include ./partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">Add your favorite movie</div>
+    <form action='/movies/<%=movie._id %>?_method=PUT' method='POST' class='ui form'>
+        <div class="field">
+            <label>Movie Title</label>
+            <input type="text" name="movie[title]" value="<%=movie.title %>" required>
+        </div>
+        <div class="field">
+            <label>Movie Image</label>
+            <input type="text" name="movie[image]" value="<%=movie.image %>" required>
+        </div>
+        <div class="field">
+            <label>Movie Actors</label>
+            <input type="text" name="movie[actors]" value="<%=movie.actors %>" required >
+        </div>
+        <div class="field">
+            <label>Movie Information</label>
+            <textarea name="movie[body]" required><%=movie.body %></textarea>
+        </div>
+        <button class="ui primary basic button">Submit</button>
+    </form>
+</div>
+
+<% include ./partials/footer %>
