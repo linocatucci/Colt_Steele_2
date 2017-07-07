@@ -120,6 +120,9 @@ app.use(function (req, res, next) {
 // So any of the routes inside of campgroundRoutes will be prefixed with /campgrounds.
 
 // use the route files we just have required
+// key : value 
+// the /campgrounds will be appended to all campgroundRoutes
+// the /campgrounds/:id/comments will be appended to all comment routes
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 app.use(indexRoutes);
