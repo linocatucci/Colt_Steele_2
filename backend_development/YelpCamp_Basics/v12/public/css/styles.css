@@ -1,0 +1,27 @@
+.fa.fa-free-code-camp {
+    color: grey;
+    font-size: 2em;
+    margin-top: 10px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 10px;
+}
+
+#delete_form {
+    display: inline;
+}
+
+
+/*
+#show_comment_block {
+    margin-bottom: 10px;
+}*/
