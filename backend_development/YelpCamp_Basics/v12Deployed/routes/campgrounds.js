@@ -6,6 +6,7 @@ var router = express.Router();
 var Campground = require('../models/campground');
 var middleware = require('../middleware'); //index.js is de default file where express is looking for
 
+
 //INDEX - show all campgrounds
 router.get('/', function (req, res) {
     console.log('Camground page!');
