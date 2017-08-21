@@ -12,18 +12,17 @@ app.use(bodyParser.urlencoded({
 
 // ROUTE CONFIG:
 // INDEX TO SEARCH PAGE
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.render('search')
 });
 
-
 //http: //www.omdbapi.com/?t=sicario&plot=full&apikey=ed6ba6e4
-app.get('/results', function (req, res) {
+app.get('/results', function(req, res) {
     // info from the query string
     var apikey = '&apikey=ed6ba6e4';
     var query = req.query.search;
     var url = 'http://www.omdbapi.com/?s=' + query + apikey;
-    request(url, function (err, response, body) {
+    request(url, function(err, response, body) {
         // turn the body string into a JSON (javascript object)
         var results = JSON.parse(body)
         if (!err && response.statusCode == 200) {
@@ -33,7 +32,7 @@ app.get('/results', function (req, res) {
             //res.send(results["Search"][0]['Title'])
         }
     })
-})
+});
 
 
 // app.get('/', function (req, res) {
@@ -62,7 +61,7 @@ app.get('/results', function (req, res) {
 // });
 
 // lokaal gebruiken
-app.listen('3010', function () {
+app.listen('3010', function() {
     console.log('Movie app has started!');
 });
 
