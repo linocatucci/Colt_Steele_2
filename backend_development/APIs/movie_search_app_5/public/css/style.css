@@ -80,3 +80,7 @@ body {
 .ui .form {
     margin-top: 1em;
 }
+
+.placeholder {
+    display: none
+}

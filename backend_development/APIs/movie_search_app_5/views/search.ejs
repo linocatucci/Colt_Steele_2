@@ -1,12 +1,11 @@
 <% include partials/header %>
 
-
     <main class="ui page grid">
         <div class="row">
             <div class="column">
                 <div class="ui message main">
                     <h1 class="ui header ">Search for your favorite movie!</h1>
-                    <form action="/results" method="GET" class='ui form'>
+                    <form action="/results" method="GET" class='ui form' id='search-form'>
                         <div class="field">
                             <input type="text" name="search" placeholder="search for movie" required>
                         </div>
@@ -17,6 +16,7 @@
         </div>
     </main>
 
-
+    <div class="ui main text container">
+    </div>
 
     <% include partials/footer %>

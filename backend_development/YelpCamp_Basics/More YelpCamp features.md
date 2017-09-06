@@ -43,6 +43,13 @@ You can access them below:
 
 - Password reset - https://youtu.be/UV9FvlTySGg
 
+- added by Lino: 
+    - adding single page features:
+        - add a campground will show a button, when clicked an input form in the jumbotron will show with inputs
+            - toggle input form
+        - with a comment, an input form is show too and the comment is added in the same screen.
+            - toggle input form
+
 
 Stay tuned for more in the coming days!
 

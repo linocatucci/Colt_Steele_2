@@ -37,11 +37,26 @@ app.get('/', function(req, res) {
     res.render('search')
 });
 
-// ROUTE CONFIG:
-// INDEX TO SEARCH PAGE
-app.get('/', function(req, res) {
-    res.render('search')
-});
+// app.get('/results', function(req, res) {
+//     var query = req.query.searchtext;
+//     var apikey = '&apikey=ed6ba6e4';
+//     var url = 'http://www.omdbapi.com/?s=' + query + apikey;
+//     request(url, function(error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             var data = JSON.parse(body);
+//             if (req.xhr) {
+//                 res.json(data)
+//             } else {
+//                 res.render('results', {
+//                     data: data
+//                 });
+//             }
+//         } else {
+//             console.log('SOMETHING WENT WRONG!')
+//         }
+//     });
+// });
+
 
 //http: //www.omdbapi.com/?t=sicario&plot=full&apikey=ed6ba6e4
 app.get('/results', function(req, res) {
@@ -51,14 +66,27 @@ app.get('/results', function(req, res) {
     var url = 'http://www.omdbapi.com/?s=' + query + apikey;
     request(url, function(err, response, body) {
         // turn the body string into a JSON (javascript object)
-        var results = JSON.parse(body)
-        if (!err && response.statusCode == 200) {
-            res.render('results', {
-                data: results
-            });
-            //res.send(results["Search"][0]['Title'])
+        console.log('eerste query ' + query);
+        if (typeof query === 'undefined') {
+            console.log('no query');
+        } else {
+            var results = JSON.parse(body);
+            if (!err && response.statusCode == 200) {
+                if (req.xhr) {
+                    console.log('werk ditook?');
+                    res.json(body);
+                } else {
+                    res.render('results', {
+                        data: results
+                    });
+                }
+                //res.send(results["Search"][0]['Title'])
+            } else {
+                console.log('ERROR');
+                console.log(err)
+            }
         }
-    })
+    });
 });
 
 
@@ -66,31 +94,15 @@ app.get('/results', function(req, res) {
 //     res.render('search');
 // })
 
-// app.get('/results', function (req, res) {
-//     var query = req.query.searchtext;
-//     var url = 'http://www.omdbapi.com/?s=' + query + apikey;
-//     request(url, function (error, response, body) {
-//         if (!error && response.statusCode == 200) {
-//             var data = JSON.parse(body);
-//             res.render('results', {
-//                 data: data
-//             });
-//         } else {
-//             console.log('SOMETHING WENT WRONG!')
-//         }
-//     });
-// });
-
-
 // bij Heroku en cloud 9 met je dit gebruiken, dit is geen hardcoded
-app.listen(process.env.PORT, process.env.IP, function() {
-    console.log('Server has started for Express ESJ Assignment!')
-});
+// app.listen(process.env.PORT, process.env.IP, function() {
+//     console.log('Server has started for Express ESJ Assignment!')
+// });
 
 // lokaal gebruiken
-// app.listen('3000', function() {
-//     console.log('Movie app has started!');
-// });
+app.listen('3000', function() {
+    console.log('Movie app has started on port 3000!');
+});
 
 // &apikey=ed6ba6e4
 // http://www.omdbapi.com/?apikey=ed6ba6e4&s
